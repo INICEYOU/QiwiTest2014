@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "INYUsers.h"
+#import "INYBalance.h"
 
 @interface INYLibraryAPI : NSObject
 

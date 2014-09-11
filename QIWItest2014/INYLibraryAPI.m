@@ -7,8 +7,6 @@
 //
 
 #import "INYLibraryAPI.h"
-#import "INYUsers.h"
-#import "INYBalance.h"
 #import "INYPersistencyManager.h"
 
 

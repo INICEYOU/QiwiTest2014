@@ -9,10 +9,6 @@
 #import "INYMasterViewController.h"
 #import "INYDetailViewController.h"
 #import "INYLibraryAPI.h"
-#import "INYUsers+TableRepresentation.h"
-
-
-#import "INYHTTPClient.h"
 
 static NSString * const ULRshowUsers = @"http://je.su/test";
 
@@ -20,11 +16,6 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     UITableView * dataTable;
     NSArray * allUsers;
-    NSDictionary * currentUsersData;
-    
-    
-    NSMutableArray *_objects;
-    INYHTTPClient *HTTPClient;
 }
 @end
 
@@ -48,7 +39,11 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     allUsers = [[INYLibraryAPI sharedInstance] getUsers];
     
+    dataTable = [UITableView new];
     
+    //////////////////////////////////////////////////////////////////////
+    //[dataTable reloadData];
+    //////////////////////////////////////////////////////////////////////
     
     /*
     
@@ -176,9 +171,9 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
-        //self.detailViewController.detailItem = HTTPClient.idUser;
+        //INYUsers *cellDidSelected = allUsers[indexPath.row];
+        //self.detailViewController.detailItem = cellDidSelected.idUser;
+        self.detailViewController.detailItem = [[INYLibraryAPI sharedInstance] getUserIdWithIndex:indexPath];
     }
 }
 
