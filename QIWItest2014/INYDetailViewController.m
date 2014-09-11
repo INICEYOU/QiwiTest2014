@@ -7,11 +7,19 @@
 //
 
 #import "INYDetailViewController.h"
+#import "INYHTTPClient.h"
 
-@interface INYDetailViewController ()
+static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuser&id=";
+
+@interface INYDetailViewController (){
+        INYHTTPClient *HTTPClient;
+}
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (weak, nonatomic) IBOutlet UILabel *Balance;
+@property (weak, nonatomic) IBOutlet UILabel *Currency;
 
 - (void)configureView;
+
 @end
 
 @implementation INYDetailViewController
@@ -38,6 +46,13 @@
 
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
+        
+        
+        HTTPClient = [INYHTTPClient new];
+        [HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
+        
+        self.Balance.text = HTTPClient.money;
+        self.Currency.text = HTTPClient.currency;
     }
 }
 

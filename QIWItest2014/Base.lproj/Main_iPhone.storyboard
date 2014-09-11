@@ -106,6 +106,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
+                        <outlet property="Balance" destination="Onp-Bj-xcr" id="9rM-Op-KT3"/>
+                        <outlet property="Currency" destination="Xpq-kl-krQ" id="5nx-hj-0UW"/>
                         <outlet property="detailDescriptionLabel" destination="Lei-5M-9Gs" id="sCT-F7-F6f"/>
                     </connections>
                 </viewController>
