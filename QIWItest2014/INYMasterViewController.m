@@ -36,17 +36,7 @@
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (INYDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
  
-    ///////////
-    NSURL *url = [NSURL URLWithString:@"http://www.mobileorchard.com"];
-    NSURLRequest *request = [NSURLRequest requestWithURL: url];
-    NSHTTPURLResponse *response;
-    [NSURLConnection sendSynchronousRequest: request returningResponse: &response error: nil];
-    if ([response respondsToSelector:@selector(statusCode)]) {
-        NSDictionary *dictionary = [response allHeaderFields];
-        NSString* aaa=[dictionary description];
-        NSLog(aaa);
-    }
-    ////////
+
 }
 
 - (void)didReceiveMemoryWarning

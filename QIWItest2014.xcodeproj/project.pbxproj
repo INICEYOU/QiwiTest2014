@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0616E7AF19C1A08E005D620F /* INYUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7AE19C1A08E005D620F /* INYUsers.m */; };
+		0616E7B519C1A3C2005D620F /* SMXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7B419C1A3C2005D620F /* SMXMLDocument.m */; };
+		0616E7B819C1A89C005D620F /* INYManagerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7B719C1A89C005D620F /* INYManagerData.m */; };
+		0616E7BB19C1A93F005D620F /* INYBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7BA19C1A93F005D620F /* INYBalance.m */; };
+		0616E7BF19C1C201005D620F /* INYHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7BE19C1C201005D620F /* INYHTTPClient.m */; };
 		0660040119BF24A400758C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040019BF24A400758C84 /* Foundation.framework */; };
 		0660040319BF24A400758C84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040219BF24A400758C84 /* CoreGraphics.framework */; };
 		0660040519BF24A400758C84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040419BF24A400758C84 /* UIKit.framework */; };
@@ -36,6 +41,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0616E7AD19C1A08E005D620F /* INYUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYUsers.h; sourceTree = "<group>"; };
+		0616E7AE19C1A08E005D620F /* INYUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYUsers.m; sourceTree = "<group>"; };
+		0616E7B319C1A3C2005D620F /* SMXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMXMLDocument.h; sourceTree = "<group>"; };
+		0616E7B419C1A3C2005D620F /* SMXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMXMLDocument.m; sourceTree = "<group>"; };
+		0616E7B619C1A89C005D620F /* INYManagerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYManagerData.h; sourceTree = "<group>"; };
+		0616E7B719C1A89C005D620F /* INYManagerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYManagerData.m; sourceTree = "<group>"; };
+		0616E7B919C1A93F005D620F /* INYBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYBalance.h; sourceTree = "<group>"; };
+		0616E7BA19C1A93F005D620F /* INYBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYBalance.m; sourceTree = "<group>"; };
+		0616E7BD19C1C201005D620F /* INYHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYHTTPClient.h; sourceTree = "<group>"; };
+		0616E7BE19C1C201005D620F /* INYHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYHTTPClient.m; sourceTree = "<group>"; };
 		066003FD19BF24A400758C84 /* QIWItest2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QIWItest2014.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0660040019BF24A400758C84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0660040219BF24A400758C84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -107,8 +122,23 @@
 		0616E7AC19C19E62005D620F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0616E7AD19C1A08E005D620F /* INYUsers.h */,
+				0616E7AE19C1A08E005D620F /* INYUsers.m */,
+				0616E7B919C1A93F005D620F /* INYBalance.h */,
+				0616E7BA19C1A93F005D620F /* INYBalance.m */,
+				0616E7B619C1A89C005D620F /* INYManagerData.h */,
+				0616E7B719C1A89C005D620F /* INYManagerData.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		0616E7BC19C1C1B2005D620F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0616E7BD19C1C201005D620F /* INYHTTPClient.h */,
+				0616E7BE19C1C201005D620F /* INYHTTPClient.m */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		066003F419BF24A400758C84 = {
@@ -144,12 +174,15 @@
 		0660040619BF24A400758C84 /* QIWItest2014 */ = {
 			isa = PBXGroup;
 			children = (
+				0616E7BC19C1C1B2005D620F /* API */,
 				0616E7AC19C19E62005D620F /* Model */,
-				0660040F19BF24A400758C84 /* INYAppDelegate.h */,
-				0660041019BF24A400758C84 /* INYAppDelegate.m */,
 				0616E7AB19C19E48005D620F /* View */,
 				0616E7AA19C19E35005D620F /* Controller */,
 				0660041E19BF24A400758C84 /* Images.xcassets */,
+				0616E7B319C1A3C2005D620F /* SMXMLDocument.h */,
+				0616E7B419C1A3C2005D620F /* SMXMLDocument.m */,
+				0660040F19BF24A400758C84 /* INYAppDelegate.h */,
+				0660041019BF24A400758C84 /* INYAppDelegate.m */,
 				0660040719BF24A400758C84 /* Supporting Files */,
 			);
 			path = QIWItest2014;
@@ -284,8 +317,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0660040D19BF24A400758C84 /* main.m in Sources */,
+				0616E7B819C1A89C005D620F /* INYManagerData.m in Sources */,
 				0660041A19BF24A400758C84 /* INYMasterViewController.m in Sources */,
 				0660041D19BF24A400758C84 /* INYDetailViewController.m in Sources */,
+				0616E7BF19C1C201005D620F /* INYHTTPClient.m in Sources */,
+				0616E7AF19C1A08E005D620F /* INYUsers.m in Sources */,
+				0616E7BB19C1A93F005D620F /* INYBalance.m in Sources */,
+				0616E7B519C1A3C2005D620F /* SMXMLDocument.m in Sources */,
 				0660041119BF24A400758C84 /* INYAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
