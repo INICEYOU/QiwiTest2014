@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "INYBalance.h"
 
 @interface INYPersistencyManager : NSObject
 
@@ -15,5 +16,6 @@
 
 - (NSString *)getUserIdWithIndex:(NSIndexPath*)index;
 - (NSArray *)getBalanceWithUserId:(NSString*)idUser;
+- (NSString *)getBalanceUserFriendlyWithBalance:(INYBalance*)inybalance;
 
 @end

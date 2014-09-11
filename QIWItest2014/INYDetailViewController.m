@@ -115,14 +115,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
     
-    INYBalance *cellBalance = balances[indexPath.row];
-    
-    NSNumberFormatter *formatter = [NSNumberFormatter new];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [formatter setLocale:[self findLocaleByCurrencyCode:cellBalance.currency]];
-    [formatter setCurrencyCode:cellBalance.currency];
-    NSString *currencyString = [formatter stringFromNumber:@([cellBalance.balance floatValue])];
-    cell.textLabel.text = currencyString;
+    cell.textLabel.text = [[INYLibraryAPI sharedInstance] getBalanceUserFriendlyWithBalance:balances[indexPath.row]];
     return cell;
 }
 
@@ -140,14 +133,15 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
         else
             locale = nil;
     }
-    
-    /* For some codes that locale cannot be found, init it different way. */
+
     if (locale == nil) {
         NSDictionary *components = [NSDictionary dictionaryWithObject:_currencyCode
                                                                forKey:NSLocaleCurrencyCode];
         
         localeId = [NSLocale localeIdentifierFromComponents:components];
         locale = [[NSLocale alloc] initWithLocaleIdentifier:localeId];
+        
+        NSLog(@"11111111111  %@",_currencyCode);
     }
     return locale;
 }

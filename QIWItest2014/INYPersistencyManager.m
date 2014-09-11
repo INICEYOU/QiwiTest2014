@@ -8,7 +8,7 @@
 
 #import "INYPersistencyManager.h"
 #import "INYUsers.h"
-#import "INYBalance.h"
+
 
 @interface INYPersistencyManager ()
 {
@@ -68,6 +68,41 @@
         }
     }
     return myBalance;
+}
+
+-(NSString *)getBalanceUserFriendlyWithBalance:(INYBalance*)inybalance
+{
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:[self findLocaleByCurrencyCode:inybalance.currency]];
+    [formatter setCurrencyCode:inybalance.currency];
+    NSString *currencyString = [formatter stringFromNumber:@([inybalance.balance floatValue])];
+    return currencyString;
+}
+
+- (NSLocale *) findLocaleByCurrencyCode:(NSString *)_currencyCode
+{
+    NSArray *locales = [NSLocale availableLocaleIdentifiers];
+    NSLocale *locale = nil;
+    NSString *localeId;
+    
+    for (localeId in locales) {
+        locale = [[NSLocale alloc] initWithLocaleIdentifier:localeId] ;
+        NSString *code = [locale objectForKey:NSLocaleCurrencyCode];
+        if ([code isEqualToString:_currencyCode])
+            break;
+        else
+            locale = nil;
+    }
+    
+    if (locale == nil) {
+        NSDictionary *components = [NSDictionary dictionaryWithObject:_currencyCode
+                                                               forKey:NSLocaleCurrencyCode];
+        
+        localeId = [NSLocale localeIdentifierFromComponents:components];
+        locale = [[NSLocale alloc] initWithLocaleIdentifier:localeId];
+    }
+    return locale;
 }
 
 @end

@@ -81,4 +81,9 @@
     return [persistencyManager getBalanceWithUserId:idUser];
 }
 
+- (NSString *)getBalanceUserFriendlyWithBalance:(INYBalance*)inybalance
+{
+    return [persistencyManager getBalanceUserFriendlyWithBalance:inybalance];
+}
+
 @end
