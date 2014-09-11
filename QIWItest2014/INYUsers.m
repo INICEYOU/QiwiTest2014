@@ -7,30 +7,19 @@
 //
 
 #import "INYUsers.h"
-#import "SMXMLDocument.h"
-
-@interface INYUsers ()
-
--(id)initWithData:(NSMutableData*)receivedData;
-
-//Id:(NSString *)userID userName:(NSString *)userName userSecondName:(NSString*)userSecondName;
-
-@end
 
 @implementation INYUsers
 
--(id)initWithData:(NSMutableData *)receivedData{
+- (id)initWithId:(NSString *)idUser
+            name:(NSString *)name
+      secondName:(NSString *)secondName
+{
     self = [super init];
     if (self)
     {
-        NSError *error;
-        SMXMLDocument *document = [SMXMLDocument documentWithData:receivedData error:&error];
-        
-        
-        
-        _userId = @"1";
-        _userName = @"2";
-        _userSecondName = @"3";
+        _idUser = idUser;
+        _name = name;
+        _secondName = secondName;
     }
     return self;
 }

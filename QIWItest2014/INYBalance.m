@@ -10,4 +10,17 @@
 
 @implementation INYBalance
 
+- (id)initWithId:(NSString *)idBalance
+         balance:(NSString *)balance
+        currency:(NSString *)currency
+{
+    self = [super init];
+    if (self)
+    {
+        _idBalance = idBalance;
+        _balance = balance;
+        _currency = currency;
+    }
+    return self;
+}
 @end

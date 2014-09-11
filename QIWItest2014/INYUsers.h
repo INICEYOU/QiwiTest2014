@@ -10,7 +10,9 @@
 
 @interface INYUsers : NSObject
 
-@property (strong, nonatomic) NSString *userId, *userName, *userSecondName;
-//@property (strong, nonatomic) NSMutableData *receivedData;
+@property (strong, nonatomic) NSString *idUser, *name, *secondName;
 
+- (id)initWithId:(NSString *)idUser
+            name:(NSString *)name
+      secondName:(NSString *)secondName;
 @end
