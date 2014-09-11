@@ -30,10 +30,10 @@
                     [[INYUsers alloc] initWithId:@"3" name:@"Vanya3" secondName:@"Sedoy3"]
                     ]];
         balances = [NSMutableArray arrayWithArray:
-                  @[[[INYBalance alloc] initWithId:@"1" balance:@"222" currency:@"USD"],
-                    [[INYBalance alloc] initWithId:@"2" balance:@"131" currency:@"RUB"],
-                    [[INYBalance alloc] initWithId:@"2" balance:@"333" currency:@"EUR"],
-                    [[INYBalance alloc] initWithId:@"3" balance:@"131" currency:@"RUB"]
+                  @[[[INYBalance alloc] initWithId:@"1" balance:@"222.00" currency:@"USD"],
+                    [[INYBalance alloc] initWithId:@"2" balance:@"131.00" currency:@"RUB"],
+                    [[INYBalance alloc] initWithId:@"2" balance:@"333.00" currency:@"EUR"],
+                    [[INYBalance alloc] initWithId:@"3" balance:@"431.00" currency:@"RUB"]
                     ]];
     }
     return self;
@@ -57,9 +57,9 @@
 
 - (NSArray *)getBalanceWithUserId:(NSString*)idUser
 {
-    NSMutableArray *myBalance;
+    NSMutableArray *myBalance = [NSMutableArray new];
     for (INYBalance *balance in balances) {
-        if (balance.idUser == idUser){
+        if ([balance.idUser isEqual: idUser]){
             [myBalance addObject:balance];
         }
     }

@@ -76,4 +76,9 @@
     return [persistencyManager getUserIdWithIndex:index];
 }
 
+- (NSArray *)getBalanceWithUserId:(NSString*)idUser
+{
+    return [persistencyManager getBalanceWithUserId:idUser];
+}
+
 @end

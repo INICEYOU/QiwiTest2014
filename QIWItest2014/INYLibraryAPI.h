@@ -18,5 +18,6 @@
 - (NSArray *)getBalances;
 
 - (NSString *)getUserIdWithIndex:(NSIndexPath*)index;
+- (NSArray *)getBalanceWithUserId:(NSString*)idUser;
 
 @end

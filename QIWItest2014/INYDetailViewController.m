@@ -7,12 +7,14 @@
 //
 
 #import "INYDetailViewController.h"
-#import "INYHTTPClient.h"
+#import "INYLibraryAPI.h"
 
 static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuser&id=";
 
-@interface INYDetailViewController (){
-        INYHTTPClient *HTTPClient;
+@interface INYDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
+{
+    //    INYHTTPClient *HTTPClient;
+    NSArray *balances;
 }
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (weak, nonatomic) IBOutlet UILabel *Balance;
@@ -46,21 +48,25 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (IBAction)refreshBalance:(id)sender {
     //HTTPClient = [INYHTTPClient new];
     //[HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
+    [self configureView];
 }
 
 - (void)configureView
 {
+    balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
+ //   NSLog(@"_detailItem %@",_detailItem);
+ //   NSLog(@"balances %d",[balances count]);
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
         
         
-        HTTPClient = [INYHTTPClient new];
-        [HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
+ //       HTTPClient = [INYHTTPClient new];
+ //       [HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
         
-        self.Balance.text = HTTPClient.money;
-        self.Currency.text = HTTPClient.currency;
+  //      self.Balance.text = HTTPClient.money;
+  //      self.Currency.text = HTTPClient.currency;
     }
 }
 
@@ -91,6 +97,32 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+}
+
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [balances count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
+    
+    INYBalance *cellBalance = balances[indexPath.row];
+    
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setCurrencyCode:cellBalance.currency];
+    NSString *currencyString = [formatter stringFromNumber:@([cellBalance.balance floatValue])];
+    cell.textLabel.text = currencyString;
+    return cell;
 }
 
 @end
