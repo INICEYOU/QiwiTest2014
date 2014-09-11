@@ -34,6 +34,18 @@
     } else {
         // при попытке соединиться произошла ошибка
     }
+    
+    ///TEMP
+    _idUser = @"7";
+    _name = @"name";
+    _secondName = @"second-name";
+    ///
+    NSLog(@"user ID %@ NAME %@ SNAME %@",_idUser,_name,_secondName);
+    ///TEMP
+    _money = @"777";
+    _currency = @"USD";
+    NSLog(@"balance  %@  %@",_money,_currency);
+    ///
 
 }
 
@@ -96,12 +108,7 @@ didReceiveResponse:(NSURLResponse *)response
                 _name = [user attributeNamed:@"name"];
                 _secondName = [user attributeNamed:@"second-name"];
             }
-            ///TEMP
-            _idUser = @"7";
-            _name = @"name";
-            _secondName = @"second-name";
-            ///
-            NSLog(@"user ID %@ NAME %@ SNAME %@",_idUser,_name,_secondName);
+
         }
         else {
             SMXMLElement *balances = [document childNamed:@"balances"];
@@ -116,12 +123,6 @@ didReceiveResponse:(NSURLResponse *)response
                 NSLog(@"user  %.2f", amount);
             }
         }
-        ///TEMP
-        _money = @"777";
-        _currency = @"USD";
-        NSLog(@"balance  %@  %@",_money,_currency);
-        ///
-        
     } else {
         SMXMLElement *codeResult = [document childNamed:@"result-code"];
         NSString *codeMessage = [codeResult attributeNamed:@"message"];

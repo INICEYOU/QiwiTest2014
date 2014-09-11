@@ -14,6 +14,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 @interface INYMasterViewController () {
     NSMutableArray *_objects;
+    INYHTTPClient *HTTPClient;
 }
 @end
 
@@ -28,8 +29,18 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     [super awakeFromNib];
 }
 
+-(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    
+    return YES;
+}
+
 - (void)viewDidLoad
 {
+    HTTPClient = [INYHTTPClient new];
+    [HTTPClient RequestWithURL:ULRshowUsers option:@""];
+    NSLog(@"viewDidLoad %@",HTTPClient.name);
+
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -38,11 +49,12 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (INYDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
  
-    INYHTTPClient *HTTPClient = [INYHTTPClient new];
-    [HTTPClient RequestWithURL:ULRshowUsers option:@""];
 
+    
 
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -69,16 +81,20 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    //return _objects.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    //NSDate *object = _objects[indexPath.row];
+    //cell.textLabel.text = [object description];
+    
+    cell.textLabel.text = [HTTPClient.name stringByAppendingString:[NSString stringWithFormat:@" %@", HTTPClient.secondName]];
     return cell;
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,8 +132,9 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
+        //NSDate *object = _objects[indexPath.row];
+        //self.detailViewController.detailItem = object;
+        self.detailViewController.detailItem = HTTPClient.idUser;
     }
 }
 
@@ -126,7 +143,8 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        //[[segue destinationViewController] setDetailItem:object];
+        [[segue destinationViewController] setDetailItem:HTTPClient.idUser];
     }
 }
 
