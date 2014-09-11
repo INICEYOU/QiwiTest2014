@@ -11,5 +11,6 @@
 @interface INYPersistencyManager : NSObject
 
 - (NSArray *)getUsers;
+- (NSArray *)getBalances;
 
 @end

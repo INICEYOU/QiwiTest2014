@@ -8,10 +8,12 @@
 
 #import "INYPersistencyManager.h"
 #import "INYUsers.h"
+#import "INYBalance.h"
 
 @interface INYPersistencyManager ()
 {
-    NSMutableArray * users; // Массив всех альбомов
+    NSMutableArray * users; // Массив всех
+    NSMutableArray * balances;
 }
 @end
 
@@ -23,9 +25,13 @@
     if (self)
     {
         users = [NSMutableArray arrayWithArray:
-                  @[[[INYUsers alloc] initWithId:@"111" name:@"Vanya" secondName:@"Sedoy"],
-                    [[INYUsers alloc] initWithId:@"222" name:@"Vanya2" secondName:@"Sedoy2"],
-                    [[INYUsers alloc] initWithId:@"333" name:@"Vanya3" secondName:@"Sedoy3"]
+                  @[[[INYUsers alloc] initWithId:@"1" name:@"Vanya" secondName:@"Sedoy"],
+                    [[INYUsers alloc] initWithId:@"2" name:@"Vanya2" secondName:@"Sedoy2"],
+                    [[INYUsers alloc] initWithId:@"3" name:@"Vanya3" secondName:@"Sedoy3"]
+                    ]];
+        balances = [NSMutableArray arrayWithArray:
+                  @[[[INYBalance alloc] initWithId:@"1" balance:@"222" currency:@"USD"],
+                    [[INYBalance alloc] initWithId:@"2" balance:@"131" currency:@"RUB"]
                     ]];
     }
     return self;
@@ -34,6 +40,11 @@
 - (NSArray *)getUsers
 {
     return users;
+}
+
+- (NSArray *)getBalances
+{
+    return balances;
 }
 
 @end
