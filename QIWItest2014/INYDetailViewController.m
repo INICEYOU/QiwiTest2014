@@ -119,10 +119,37 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     
     NSNumberFormatter *formatter = [NSNumberFormatter new];
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:[self findLocaleByCurrencyCode:cellBalance.currency]];
     [formatter setCurrencyCode:cellBalance.currency];
     NSString *currencyString = [formatter stringFromNumber:@([cellBalance.balance floatValue])];
     cell.textLabel.text = currencyString;
     return cell;
+}
+
+- (NSLocale *) findLocaleByCurrencyCode:(NSString *)_currencyCode
+{
+    NSArray *locales = [NSLocale availableLocaleIdentifiers];
+    NSLocale *locale = nil;
+    NSString *localeId;
+    
+    for (localeId in locales) {
+        locale = [[NSLocale alloc] initWithLocaleIdentifier:localeId] ;
+        NSString *code = [locale objectForKey:NSLocaleCurrencyCode];
+        if ([code isEqualToString:_currencyCode])
+            break;
+        else
+            locale = nil;
+    }
+    
+    /* For some codes that locale cannot be found, init it different way. */
+    if (locale == nil) {
+        NSDictionary *components = [NSDictionary dictionaryWithObject:_currencyCode
+                                                               forKey:NSLocaleCurrencyCode];
+        
+        localeId = [NSLocale localeIdentifierFromComponents:components];
+        locale = [[NSLocale alloc] initWithLocaleIdentifier:localeId];
+    }
+    return locale;
 }
 
 @end

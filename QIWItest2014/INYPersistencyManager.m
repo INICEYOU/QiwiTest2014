@@ -32,8 +32,12 @@
         balances = [NSMutableArray arrayWithArray:
                   @[[[INYBalance alloc] initWithId:@"1" balance:@"222.00" currency:@"USD"],
                     [[INYBalance alloc] initWithId:@"2" balance:@"131.00" currency:@"RUB"],
+                    [[INYBalance alloc] initWithId:@"2" balance:@"333.00" currency:@"CNY"],
+                    [[INYBalance alloc] initWithId:@"2" balance:@"333.00" currency:@"DEM"],
+                    [[INYBalance alloc] initWithId:@"2" balance:@"333.00" currency:@"CAD"],
+                    [[INYBalance alloc] initWithId:@"2" balance:@"333.00" currency:@"USD"],
                     [[INYBalance alloc] initWithId:@"2" balance:@"333.00" currency:@"EUR"],
-                    [[INYBalance alloc] initWithId:@"3" balance:@"431.00" currency:@"RUB"]
+                    [[INYBalance alloc] initWithId:@"3" balance:@"431.00" currency:@"AUD"]
                     ]];
     }
     return self;
