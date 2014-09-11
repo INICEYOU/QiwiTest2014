@@ -47,4 +47,10 @@
     return balances;
 }
 
+- (NSString *)getUserIdWithIndex:(NSIndexPath*)index
+{
+    INYUsers *myUser = users[index.row];
+    return myUser.idUser;
+}
+
 @end

@@ -8,11 +8,21 @@
 
 #import "INYMasterViewController.h"
 #import "INYDetailViewController.h"
+#import "INYLibraryAPI.h"
+#import "INYUsers+TableRepresentation.h"
+
+
 #import "INYHTTPClient.h"
 
 static NSString * const ULRshowUsers = @"http://je.su/test";
 
-@interface INYMasterViewController () {
+@interface INYMasterViewController ()<UITableViewDataSource, UITableViewDelegate>
+{
+    UITableView * dataTable;
+    NSArray * allUsers;
+    NSDictionary * currentUsersData;
+    
+    
     NSMutableArray *_objects;
     INYHTTPClient *HTTPClient;
 }
@@ -36,10 +46,19 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 - (void)viewDidLoad
 {
+    allUsers = [[INYLibraryAPI sharedInstance] getUsers];
+    
+    INYUsers *users;
+    currentUsersData = [users tr_tableRepresentation];
+    
+    /*
+    
+    
+    
     HTTPClient = [INYHTTPClient new];
     [HTTPClient RequestWithURL:ULRshowUsers option:@""];
     NSLog(@"viewDidLoad %@",HTTPClient.name);
-
+    */
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -64,12 +83,19 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 - (void)insertNewObject:(id)sender
 {
+    /*
+     
+     
+     
+     
+     
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
     [_objects insertObject:[NSDate date] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    */
 }
 
 #pragma mark - Table View
@@ -82,35 +108,50 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return _objects.count;
-    return 1;
+    return [currentUsersData[@"titles"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    cell.textLabel.text = currentUsersData[@"titles"][indexPath.row];
+    cell.detailTextLabel.text = currentUsersData[@"values"][indexPath.row];
+  /*
+    
+    
+    
 
     //NSDate *object = _objects[indexPath.row];
     //cell.textLabel.text = [object description];
     
     cell.textLabel.text = [HTTPClient.name stringByAppendingString:[NSString stringWithFormat:@" %@", HTTPClient.secondName]];
-    return cell;
+   */
+   return cell;
     
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
+    
+    
+    
+    
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [_objects removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
+    */
 }
 
 /*
@@ -132,9 +173,9 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        //NSDate *object = _objects[indexPath.row];
-        //self.detailViewController.detailItem = object;
-        self.detailViewController.detailItem = HTTPClient.idUser;
+        NSDate *object = _objects[indexPath.row];
+        self.detailViewController.detailItem = object;
+        //self.detailViewController.detailItem = HTTPClient.idUser;
     }
 }
 
@@ -142,9 +183,12 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        //[[segue destinationViewController] setDetailItem:object];
-        [[segue destinationViewController] setDetailItem:HTTPClient.idUser];
+  //      NSDate *object = _objects[indexPath.row];
+        
+       // ; idUser
+      //  NSUInteger myIndex = indexPath;
+        [[segue destinationViewController] setDetailItem:[[INYLibraryAPI sharedInstance] getUserIdWithIndex:[indexPath]];
+        //[[segue destinationViewController] setDetailItem:HTTPClient.idUser];
     }
 }
 

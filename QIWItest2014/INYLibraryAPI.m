@@ -9,8 +9,12 @@
 #import "INYLibraryAPI.h"
 #import "INYUsers.h"
 #import "INYBalance.h"
-#import "INYHTTPClient.h"
 #import "INYPersistencyManager.h"
+
+
+#import "INYHTTPClient.h"
+
+
 
 @interface INYLibraryAPI ()
 {
@@ -67,6 +71,11 @@
      }
      */
     return [persistencyManager getBalances];
+}
+
+- (NSString *)getUserIdWithIndex:(NSIndexPath*)index
+{
+    return [persistencyManager getUserIdWithIndex:index];
 }
 
 @end
