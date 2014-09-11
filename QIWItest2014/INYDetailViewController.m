@@ -18,6 +18,9 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 @property (weak, nonatomic) IBOutlet UILabel *Balance;
 @property (weak, nonatomic) IBOutlet UILabel *Currency;
 
+- (IBAction)refreshBalance:(id)sender;
+
+
 - (void)configureView;
 
 @end
@@ -38,6 +41,11 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }        
+}
+
+- (IBAction)refreshBalance:(id)sender {
+    HTTPClient = [INYHTTPClient new];
+    [HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
 }
 
 - (void)configureView
