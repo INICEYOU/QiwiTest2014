@@ -76,6 +76,13 @@ didReceiveResponse:(NSURLResponse *)response
 //    label.text = errorString;
     NSLog(@"%@",errorString);
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка соединения"
+                                                    message:errorString
+                                                   delegate:self
+                                          cancelButtonTitle:@"Ок"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
