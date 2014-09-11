@@ -7,8 +7,10 @@
 //
 
 #import "INYMasterViewController.h"
-
 #import "INYDetailViewController.h"
+#import "INYHTTPClient.h"
+
+static NSString * const ULRshowUsers = @"http://je.su/test";
 
 @interface INYMasterViewController () {
     NSMutableArray *_objects;
@@ -36,6 +38,9 @@
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (INYDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
  
+    INYHTTPClient *HTTPClient = [INYHTTPClient new];
+    [HTTPClient RequestWithURL:ULRshowUsers option:@""];
+
 
 }
 

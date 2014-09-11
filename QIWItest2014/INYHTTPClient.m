@@ -16,9 +16,11 @@
 
 @implementation INYHTTPClient
 
-- (void)setGetRequest:(NSString*)url option:(NSString*)option
+- (void)RequestWithURL:(NSString*)url option:(NSString*)option
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
+    NSString *URLfull = [url stringByAppendingString:option];
+    NSLog(@"%@",URLfull);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLfull]
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:15.0];
     urlString = url;
@@ -67,10 +69,8 @@ didReceiveResponse:(NSURLResponse *)response
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     // данные получены
     // здесь можно произвести операции с данными
-    
     // можно узнать размер загруженных данных
     //NSString *dataString = [[NSString alloc] initWithFormat:@"Received %d bytes of data",[receivedData length]];
-    
     // если ожидаемые полученные данные - это строка, то можно вывести её
     ////////////////////////////
     //  NSString *dataString = [[NSString alloc] initWithData:receivedData                                                 encoding:NSUTF8StringEncoding];
@@ -79,7 +79,7 @@ didReceiveResponse:(NSURLResponse *)response
     
     NSError *error;
     SMXMLDocument *document = [SMXMLDocument documentWithData:_receivedData error:&error];
-    //    NSLog(@"Document:\n %@", document);
+  //NSLog(@"Document:\n %@", document);
     
     
     
@@ -88,30 +88,39 @@ didReceiveResponse:(NSURLResponse *)response
     NSLog(@"valueCode  %d", valueCode);
     
     if (valueCode == 0) {
-        if ([urlString  isEqual: @"http://je.su/test?mode=showuser&id="]) {
+        if ([urlString  isEqual: @"http://je.su/test"]) {
+            
+            SMXMLElement *users = [document childNamed:@"users"];
+            for (SMXMLElement *user in [users childrenNamed:@"user"]) {
+                _idUser = [user attributeNamed:@"id"];
+                _name = [user attributeNamed:@"name"];
+                _secondName = [user attributeNamed:@"second-name"];
+            }
+            ///TEMP
+            _idUser = @"7";
+            _name = @"name";
+            _secondName = @"second-name";
+            ///
+            NSLog(@"user ID %@ NAME %@ SNAME %@",_idUser,_name,_secondName);
+        }
+        else {
             SMXMLElement *balances = [document childNamed:@"balances"];
             for (SMXMLElement *balance in [balances childrenNamed:@"balance"]) {
-                NSString *currency = [balance attributeNamed:@"currency"];
+                _currency = [balance attributeNamed:@"currency"];
                 float amount = [balance attributeNamed:@"amount"].floatValue;
                 
-                [[NSNumberFormatter new] setInternationalCurrencySymbol:currency];
-                NSLog(@"user  %@", currency );
+                _money = [balance attributeNamed:@"amount"];
+                
+                [[NSNumberFormatter new] setInternationalCurrencySymbol:_currency];
+                NSLog(@"user  %@", _currency );
                 NSLog(@"user  %.2f", amount);
-                //getMoneyUserId = idUser;
-                //NSLog(@"user  %@", [ULRgetMoneyWithUserId stringByAppendingString:getMoneyUserId]);
             }
         }
-        
-        SMXMLElement *users = [document childNamed:@"users"];
-        for (SMXMLElement *user in [users childrenNamed:@"user"]) {
-            NSString *idUser = [user attributeNamed:@"id"];
-            NSString *name = [user attributeNamed:@"name"];
-            NSString *secondName = [user attributeNamed:@"second-name"];
-            NSLog(@"user  %@", secondName);
- //           label.text = secondName;
- //           getMoneyUserId = idUser;
- //           NSLog(@"user  %@", [ULRgetMoneyWithUserId stringByAppendingString:getMoneyUserId]);
-        }
+        ///TEMP
+        _money = @"777";
+        _currency = @"USD";
+        NSLog(@"balance  %@  %@",_money,_currency);
+        ///
         
     } else {
         SMXMLElement *codeResult = [document childNamed:@"result-code"];
