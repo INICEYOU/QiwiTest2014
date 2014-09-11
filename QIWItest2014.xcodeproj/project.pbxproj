@@ -84,6 +84,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0616E7AA19C19E35005D620F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0660041819BF24A400758C84 /* INYMasterViewController.h */,
+				0660041919BF24A400758C84 /* INYMasterViewController.m */,
+				0660041B19BF24A400758C84 /* INYDetailViewController.h */,
+				0660041C19BF24A400758C84 /* INYDetailViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0616E7AB19C19E48005D620F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0660041219BF24A400758C84 /* Main_iPhone.storyboard */,
+				0660041519BF24A400758C84 /* Main_iPad.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0616E7AC19C19E62005D620F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		066003F419BF24A400758C84 = {
 			isa = PBXGroup;
 			children = (
@@ -117,14 +144,11 @@
 		0660040619BF24A400758C84 /* QIWItest2014 */ = {
 			isa = PBXGroup;
 			children = (
+				0616E7AC19C19E62005D620F /* Model */,
 				0660040F19BF24A400758C84 /* INYAppDelegate.h */,
 				0660041019BF24A400758C84 /* INYAppDelegate.m */,
-				0660041219BF24A400758C84 /* Main_iPhone.storyboard */,
-				0660041519BF24A400758C84 /* Main_iPad.storyboard */,
-				0660041819BF24A400758C84 /* INYMasterViewController.h */,
-				0660041919BF24A400758C84 /* INYMasterViewController.m */,
-				0660041B19BF24A400758C84 /* INYDetailViewController.h */,
-				0660041C19BF24A400758C84 /* INYDetailViewController.m */,
+				0616E7AB19C19E48005D620F /* View */,
+				0616E7AA19C19E35005D620F /* Controller */,
 				0660041E19BF24A400758C84 /* Images.xcassets */,
 				0660040719BF24A400758C84 /* Supporting Files */,
 			);
@@ -400,6 +424,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QIWItest2014/QIWItest2014-Prefix.pch";
 				INFOPLIST_FILE = "QIWItest2014/QIWItest2014-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -413,6 +438,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QIWItest2014/QIWItest2014-Prefix.pch";
 				INFOPLIST_FILE = "QIWItest2014/QIWItest2014-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -477,6 +503,7 @@
 				0660043719BF24A400758C84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0660043819BF24A400758C84 /* Build configuration list for PBXNativeTarget "QIWItest2014Tests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +512,7 @@
 				0660043A19BF24A400758C84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
