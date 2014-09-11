@@ -44,8 +44,8 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 }
 
 - (IBAction)refreshBalance:(id)sender {
-    HTTPClient = [INYHTTPClient new];
-    [HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
+    //HTTPClient = [INYHTTPClient new];
+    //[HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
 }
 
 - (void)configureView

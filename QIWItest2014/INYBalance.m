@@ -10,14 +10,14 @@
 
 @implementation INYBalance
 
-- (id)initWithId:(NSString *)idBalance
+- (id)initWithId:(NSString *)idUser
          balance:(NSString *)balance
         currency:(NSString *)currency
 {
     self = [super init];
     if (self)
     {
-        _idBalance = idBalance;
+        _idUser = idUser;
         _balance = balance;
         _currency = currency;
     }
