@@ -13,5 +13,6 @@
 + (INYLibraryAPI *)sharedInstance;
 
 - (NSArray *)getUsers;
+- (NSArray *)getBalances;
 
 @end

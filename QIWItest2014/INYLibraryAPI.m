@@ -49,7 +49,24 @@
 
 - (NSArray *)getUsers
 {
+    /*
+    if (isOnline)
+    {
+        
+    }
+    */
     return [persistencyManager getUsers];
+}
+
+- (NSArray *)getBalances
+{
+    /*
+     if (isOnline)
+     {
+     
+     }
+     */
+    return [persistencyManager getBalances];
 }
 
 @end
