@@ -14,6 +14,7 @@
 		0616E7BF19C1C201005D620F /* INYHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7BE19C1C201005D620F /* INYHTTPClient.m */; };
 		0616E7C219C1F6D5005D620F /* INYLibraryAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7C119C1F6D5005D620F /* INYLibraryAPI.m */; };
 		0616E7C519C1F7C3005D620F /* INYPersistencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7C419C1F7C3005D620F /* INYPersistencyManager.m */; };
+		0616E7C819C1FE0B005D620F /* INYUsers+TableRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7C719C1FE0B005D620F /* INYUsers+TableRepresentation.m */; };
 		0660040119BF24A400758C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040019BF24A400758C84 /* Foundation.framework */; };
 		0660040319BF24A400758C84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040219BF24A400758C84 /* CoreGraphics.framework */; };
 		0660040519BF24A400758C84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040419BF24A400758C84 /* UIKit.framework */; };
@@ -57,6 +58,8 @@
 		0616E7C119C1F6D5005D620F /* INYLibraryAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYLibraryAPI.m; sourceTree = "<group>"; };
 		0616E7C319C1F7C3005D620F /* INYPersistencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYPersistencyManager.h; sourceTree = "<group>"; };
 		0616E7C419C1F7C3005D620F /* INYPersistencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYPersistencyManager.m; sourceTree = "<group>"; };
+		0616E7C619C1FE0B005D620F /* INYUsers+TableRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "INYUsers+TableRepresentation.h"; sourceTree = "<group>"; };
+		0616E7C719C1FE0B005D620F /* INYUsers+TableRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "INYUsers+TableRepresentation.m"; sourceTree = "<group>"; };
 		066003FD19BF24A400758C84 /* QIWItest2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QIWItest2014.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0660040019BF24A400758C84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0660040219BF24A400758C84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,6 +141,8 @@
 				0616E7C119C1F6D5005D620F /* INYLibraryAPI.m */,
 				0616E7C319C1F7C3005D620F /* INYPersistencyManager.h */,
 				0616E7C419C1F7C3005D620F /* INYPersistencyManager.m */,
+				0616E7C619C1FE0B005D620F /* INYUsers+TableRepresentation.h */,
+				0616E7C719C1FE0B005D620F /* INYUsers+TableRepresentation.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				0660041A19BF24A400758C84 /* INYMasterViewController.m in Sources */,
 				0660041D19BF24A400758C84 /* INYDetailViewController.m in Sources */,
 				0616E7BF19C1C201005D620F /* INYHTTPClient.m in Sources */,
+				0616E7C819C1FE0B005D620F /* INYUsers+TableRepresentation.m in Sources */,
 				0616E7AF19C1A08E005D620F /* INYUsers.m in Sources */,
 				0616E7BB19C1A93F005D620F /* INYBalance.m in Sources */,
 				0616E7C519C1F7C3005D620F /* INYPersistencyManager.m in Sources */,
