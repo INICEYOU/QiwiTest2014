@@ -48,8 +48,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     allUsers = [[INYLibraryAPI sharedInstance] getUsers];
     
-    INYUsers *users;
-    currentUsersData = [users tr_tableRepresentation];
+    
     
     /*
     
@@ -108,15 +107,19 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return _objects.count;
-    return [currentUsersData[@"titles"] count];
+    return [allUsers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    cell.textLabel.text = currentUsersData[@"titles"][indexPath.row];
-    cell.detailTextLabel.text = currentUsersData[@"values"][indexPath.row];
+    INYUsers *users = allUsers[indexPath.row];
+ //   currentUsersData = [users tr_tableRepresentation];
+    
+    
+    cell.textLabel.text = users.name;
+ //   cell.detailTextLabel.text = currentUsersData[@"values"];
   /*
     
     
@@ -185,9 +188,8 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
   //      NSDate *object = _objects[indexPath.row];
         
-       // ; idUser
       //  NSUInteger myIndex = indexPath;
-        [[segue destinationViewController] setDetailItem:[[INYLibraryAPI sharedInstance] getUserIdWithIndex:[indexPath]];
+        [[segue destinationViewController] setDetailItem:[[INYLibraryAPI sharedInstance] getUserIdWithIndex:indexPath]];
         //[[segue destinationViewController] setDetailItem:HTTPClient.idUser];
     }
 }
