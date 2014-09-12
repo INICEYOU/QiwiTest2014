@@ -46,6 +46,17 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
     [refreshControl endRefreshing];
     [dataTable reloadData];
+    
+    NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
+    if (![message isEqualToString:@""]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Код сообщения"
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)didReceiveMemoryWarning

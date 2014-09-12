@@ -81,4 +81,8 @@
      getWithReceivedData:receivedData urlString:urlString optionIdUser:optionIdUser];
 }
 
+- (NSString *)codeMessageRequest{
+   return [persistencyManager codeMessageRequest];
+}
+
 @end

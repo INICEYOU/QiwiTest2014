@@ -15,6 +15,7 @@
 {
     NSMutableArray * users; // Массив всех
     NSMutableArray * balances;
+    NSString *codeMessageRequest;
 }
 @end
 
@@ -25,21 +26,8 @@
     self = [super init];
     if (self)
     {
-        users = [NSMutableArray arrayWithArray:
-                  @[[[INYUsers alloc] initWithId:@"1" name:@"Vanya" secondName:@"Sedoy"],
-                    [[INYUsers alloc] initWithId:@"2" name:@"Vanya2" secondName:@"Sedoy2"],
-                    [[INYUsers alloc] initWithId:@"3" name:@"Vanya3" secondName:@"Sedoy3"]
-                    ]];
-        balances = [NSMutableArray arrayWithArray:
-                  @[[[INYBalance alloc] initWithId:@"1" amount:@"222.00" currency:@"USD"],
-                    [[INYBalance alloc] initWithId:@"2" amount:@"131.00" currency:@"RUB"],
-                    [[INYBalance alloc] initWithId:@"2" amount:@"333.00" currency:@"CNY"],
-                    [[INYBalance alloc] initWithId:@"2" amount:@"333.00" currency:@"DEM"],
-                    [[INYBalance alloc] initWithId:@"2" amount:@"333.00" currency:@"CAD"],
-                    [[INYBalance alloc] initWithId:@"2" amount:@"333.00" currency:@"USD"],
-                    [[INYBalance alloc] initWithId:@"2" amount:@"333.00" currency:@"EUR"],
-                    [[INYBalance alloc] initWithId:@"3" amount:@"431.00" currency:@"AUD"]
-                    ]];
+        users = [NSMutableArray new];
+        balances = [NSMutableArray new];
     }
     return self;
 }
@@ -112,7 +100,7 @@
     SMXMLDocument *document = [SMXMLDocument documentWithData:receivedData error:&error];
     NSLog(@"Document:\n %@", document);
     
-    
+    NSString *codeMessage = @"";
     
     //NSString *id = [user attributeNamed:@"id"];   //message
     int valueCode = [document valueWithPath:@"result-code"].intValue;
@@ -153,6 +141,12 @@
         NSString *codeMessage = [codeResult attributeNamed:@"message"];
         NSLog(@"user  %@", codeMessage);
     }
+    codeMessageRequest = codeMessage;
+}
+
+- (NSString *)codeMessageRequest
+{
+    return codeMessageRequest;
 }
 
 @end

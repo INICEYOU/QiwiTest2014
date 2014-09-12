@@ -55,6 +55,17 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     allUsers = [[INYLibraryAPI sharedInstance] getUsers];
     [refreshControl endRefreshing];
     [dataTable reloadData];
+    
+    NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
+    if (![message isEqualToString:@""]) {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Код сообщения"
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
+    [alert show];
+    }
 }
 
 - (void)didReceiveMemoryWarning

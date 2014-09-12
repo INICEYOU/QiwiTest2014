@@ -23,5 +23,6 @@
 
 - (void)RequestWithURL:(NSString*)url option:(NSString*)option;
 - (void)getWithReceivedData:(NSData*)receivedData urlString:(NSString*)urlString optionIdUser:(NSString*)optionIdUser;
+- (NSString *)codeMessageRequest;
 
 @end
