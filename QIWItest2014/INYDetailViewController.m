@@ -47,22 +47,22 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 - (void)refreshTable
 {
-    // replace right bar button 'refresh' with spinner
+
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
-    // how we stop refresh from freezing the main UI thread
+
     dispatch_queue_t downloadQueue2 = dispatch_queue_create("downloader2", NULL);
     dispatch_sync(downloadQueue2, ^{
         
-        // do our long running process here
+
         [NSThread sleepForTimeInterval:0.6];
         [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
         
-        // do any UI stuff on the main UI thread
+
         dispatch_async(dispatch_get_main_queue(), ^{
 
             balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
@@ -127,10 +127,6 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-   /* barButtonItem.title = @"Пользователи";
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    */
     self.masterPopoverController = nil;
 }
 

@@ -13,7 +13,7 @@
 
 @interface INYPersistencyManager ()
 {
-    NSMutableArray * users; // Массив всех
+    NSMutableArray * users;
     NSMutableArray * balances;
     NSString *codeMessageRequest;
 }
@@ -103,7 +103,6 @@
     
     NSString *codeMessage = @"";
     
-    //NSString *id = [user attributeNamed:@"id"];   //message
     int valueCode = [document valueWithPath:@"result-code"].intValue;
     NSLog(@"valueCode  %d", valueCode);
     

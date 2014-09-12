@@ -14,7 +14,6 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 @interface INYMasterViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
-  //  UITableView * dataTable;
     NSArray * allUsers;
     IBOutlet UITableView *dataTable;
     UIRefreshControl *refreshControl;
@@ -51,28 +50,27 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-   // [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
-
+    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
 }
 
 - (void)refreshTable
 {
-    // replace right bar button 'refresh' with spinner
+
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
-    // how we stop refresh from freezing the main UI thread
+
     dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_sync(downloadQueue, ^{
         
-        // do our long running process here
+
         [NSThread sleepForTimeInterval:0.5];
         [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
         
-        // do any UI stuff on the main UI thread
+
         dispatch_async(dispatch_get_main_queue(), ^{
             allUsers = [[INYLibraryAPI sharedInstance] getUsers];
             [dataTable reloadData];
