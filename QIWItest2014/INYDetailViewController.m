@@ -36,6 +36,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     [dataTable addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
+    
     [self configureView];
     [self refreshTable];
 }
@@ -82,7 +83,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (void)configureView
 {
     if (self.detailItem) {
-        self.detailDescriptionLabel.title = self.detailItem;
+        self.detailDescriptionLabel.title = [NSString stringWithFormat:@"# %@",self.detailItem];
     }
 }
 
@@ -90,15 +91,19 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:NO];
+    /*
+    barButtonItem.title =NSLocalizedString(@"Пользователи", @"Пользователи");
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+     */
     self.masterPopoverController = popoverController;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+   /* barButtonItem.title = @"Пользователи";
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    */
     self.masterPopoverController = nil;
 }
 

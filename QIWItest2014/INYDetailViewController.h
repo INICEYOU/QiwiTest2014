@@ -10,6 +10,7 @@
 
 @interface INYDetailViewController : UIViewController <UISplitViewControllerDelegate>
 
+
 @property (strong, nonatomic) NSString *detailItem;
 
 @property (strong, nonatomic) IBOutlet UINavigationItem *detailDescriptionLabel;

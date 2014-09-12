@@ -57,7 +57,7 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <navigationItem key="navigationItem" title="Пользователи" id="tQt-TN-PWz"/>
                     <connections>
                         <outlet property="dataTable" destination="mLL-gJ-YKr" id="APK-iR-e7K"/>
                     </connections>
@@ -109,7 +109,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
+                    <navigationItem key="navigationItem" title="Баланс" id="cra-N8-TIN"/>
                     <connections>
                         <outlet property="dataTable" destination="Z92-wl-rFm" id="T3R-hS-cQd"/>
                         <outlet property="detailDescriptionLabel" destination="cra-N8-TIN" id="iJP-gS-hl6"/>

@@ -34,6 +34,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
 
     self.detailViewController = (INYDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
@@ -47,6 +48,11 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
     [self refreshTable];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+
 }
 
 - (void)refreshTable
