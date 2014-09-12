@@ -7,10 +7,12 @@
 //
 
 #import "INYHTTPClient.h"
-#import "SMXMLDocument.h"
+#import "INYLibraryAPI.h"
+
 
 @interface INYHTTPClient (){
     NSString *urlString;
+    NSString *optionIdUser;
 }
 @end
 
@@ -37,6 +39,7 @@
     //NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLfull] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15.0];
     
     urlString = url;
+    optionIdUser = option;
     // создаём соединение и начинаем загрузку
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
@@ -108,46 +111,8 @@ didReceiveResponse:(NSURLResponse *)response
     //  NSString *dataString = [[NSString alloc] initWithData:receivedData                                                 encoding:NSUTF8StringEncoding];
     //  label.text = dataString;
     
+    [[INYLibraryAPI sharedInstance]getWithReceivedData:_receivedData urlString:urlString optionIdUser:optionIdUser];
     
-    NSError *error;
-    SMXMLDocument *document = [SMXMLDocument documentWithData:_receivedData error:&error];
-  //NSLog(@"Document:\n %@", document);
-    
-    
-    
-    //NSString *id = [user attributeNamed:@"id"];   //message
-    int valueCode = [document valueWithPath:@"result-code"].intValue;
-    NSLog(@"valueCode  %d", valueCode);
-    
-    if (valueCode == 0) {
-        if ([urlString  isEqualToString: @"http://je.su/test"]) {
-            
-            SMXMLElement *users = [document childNamed:@"users"];
-            for (SMXMLElement *user in [users childrenNamed:@"user"]) {
-                _idUser = [user attributeNamed:@"id"];
-                _name = [user attributeNamed:@"name"];
-                _secondName = [user attributeNamed:@"second-name"];
-            }
-
-        }
-        else {
-            SMXMLElement *balances = [document childNamed:@"balances"];
-            for (SMXMLElement *balance in [balances childrenNamed:@"balance"]) {
-                _currency = [balance attributeNamed:@"currency"];
-                float amount = [balance attributeNamed:@"amount"].floatValue;
-                
-                _money = [balance attributeNamed:@"amount"];
-                
-                [[NSNumberFormatter new] setInternationalCurrencySymbol:_currency];
-                NSLog(@"user  %@", _currency );
-                NSLog(@"user  %.2f", amount);
-            }
-        }
-    } else {
-        SMXMLElement *codeResult = [document childNamed:@"result-code"];
-        NSString *codeMessage = [codeResult attributeNamed:@"message"];
-        NSLog(@"user  %@", codeMessage);
-    }
     // освобождаем соединение и полученные данные
 }
 

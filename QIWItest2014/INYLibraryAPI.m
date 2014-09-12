@@ -75,4 +75,10 @@
     [httpClient RequestWithURL:url option:option];
 }
 
+- (void)getWithReceivedData:(NSData*)receivedData urlString:(NSString*)urlString optionIdUser:(NSString*)optionIdUser
+{
+    [persistencyManager
+     getWithReceivedData:receivedData urlString:urlString optionIdUser:optionIdUser];
+}
+
 @end

@@ -18,6 +18,8 @@
 - (NSArray *)getBalanceWithUserId:(NSString*)idUser;
 - (NSString *)getBalanceUserFriendlyWithBalance:(INYBalance*)inybalance;
 
+- (void)getWithReceivedData:(NSData*)receivedData urlString:(NSString*)urlString optionIdUser:(NSString*)optionIdUser;
+
 
 
 @end
