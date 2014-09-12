@@ -81,18 +81,11 @@ didReceiveResponse:(NSURLResponse *)response
 
 - (void)connection:(NSURLConnection *)connection
   didFailWithError:(NSError *)error {
-    // освобождаем соединение и полученные данные
-    
-    
     // выводим сообщение об ошибке
-    NSString *errorString = [[NSString alloc] initWithFormat:@"Connection failed! Error - %@ %@ %@",
-                             [error localizedDescription],
-                             [error description],
-                             [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]];
-//    label.text = errorString;
-    NSLog(@"%@",errorString);
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка соединения"
+    NSString *errorString = [[NSString alloc] initWithFormat:@"Connection failed! %@",
+                             [error localizedDescription]];
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка"
                                                     message:errorString
                                                    delegate:self
                                           cancelButtonTitle:@"Ок"

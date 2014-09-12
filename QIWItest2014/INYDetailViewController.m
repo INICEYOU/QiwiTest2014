@@ -43,21 +43,45 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 - (void)refreshTable
 {
-    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
-    balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
-    [refreshControl endRefreshing];
-    [dataTable reloadData];
+    // replace right bar button 'refresh' with spinner
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     
-    NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
-    if (![message isEqualToString:@""]) {
+    // how we stop refresh from freezing the main UI thread
+    dispatch_queue_t downloadQueue2 = dispatch_queue_create("downloader2", NULL);
+    dispatch_sync(downloadQueue2, ^{
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Код сообщения"
-                                                        message:message
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
+        // do our long running process here
+        //[NSThread sleepForTimeInterval:1];
+        [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
+        
+        // do any UI stuff on the main UI thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
+            [refreshControl endRefreshing];
+            [dataTable reloadData];
+            
+            
+            [spinner stopAnimating];
+            
+            NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
+            if (![message isEqualToString:@""]) {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка"
+                                                                message:message
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        });
+        
+    });
+
 }
 
 - (void)didReceiveMemoryWarning

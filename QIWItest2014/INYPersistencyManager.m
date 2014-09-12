@@ -28,6 +28,7 @@
     {
         users = [NSMutableArray new];
         balances = [NSMutableArray new];
+        codeMessageRequest = @"";
     }
     return self;
 }
@@ -138,7 +139,7 @@
         }
     } else {
         SMXMLElement *codeResult = [document childNamed:@"result-code"];
-        NSString *codeMessage = [codeResult attributeNamed:@"message"];
+        codeMessage = [codeResult attributeNamed:@"message"];
         NSLog(@"user  %@", codeMessage);
     }
     codeMessageRequest = codeMessage;

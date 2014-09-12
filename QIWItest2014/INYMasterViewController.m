@@ -57,21 +57,49 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 - (void)refreshTable
 {
-    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+    // replace right bar button 'refresh' with spinner
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
+    // how we stop refresh from freezing the main UI thread
+    dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
+    dispatch_sync(downloadQueue, ^{
+        
+        // do our long running process here
+        //[NSThread sleepForTimeInterval:1];
+        [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+        
+        // do any UI stuff on the main UI thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+        //    self.myLabel.text = @"After!";
+            allUsers = [[INYLibraryAPI sharedInstance] getUsers];
+            [refreshControl endRefreshing];
+            [dataTable reloadData];
+            [spinner stopAnimating];
+            
+            NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
+            if (![message isEqualToString:@""]) {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Код сообщения"
+                                                                message:message
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        });
+        
+    });
+    
+    /*[[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
     allUsers = [[INYLibraryAPI sharedInstance] getUsers];
     [refreshControl endRefreshing];
     [dataTable reloadData];
+    */
     
-    NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
-    if (![message isEqualToString:@""]) {
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Код сообщения"
-                                                    message:message
-                                                   delegate:self
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles:nil];
-    [alert show];
-    }
 }
 
 - (void)didReceiveMemoryWarning
