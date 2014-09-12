@@ -17,6 +17,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
   //  UITableView * dataTable;
     NSArray * allUsers;
     IBOutlet UITableView *dataTable;
+    UIRefreshControl *refreshControl;
 }
 @end
 
@@ -40,6 +41,11 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                                                                       target:self action:@selector(refreshTable)];
     self.navigationItem.rightBarButtonItem = addButtonRefresh;
+    
+    refreshControl = [[UIRefreshControl alloc]init];
+    [dataTable addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    
     [self refreshTable];
 }
 
@@ -47,6 +53,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
     allUsers = [[INYLibraryAPI sharedInstance] getUsers];
+    [refreshControl endRefreshing];
     [dataTable reloadData];
 }
 

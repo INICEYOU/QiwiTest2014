@@ -15,6 +15,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 {
     NSArray *balances;
     IBOutlet UITableView *dataTable;
+    UIRefreshControl *refreshControl;
 }
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
@@ -24,6 +25,34 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 @implementation INYDetailViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	
+    UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable)];
+    self.navigationItem.rightBarButtonItem = addButtonRefresh;
+    
+    refreshControl = [[UIRefreshControl alloc]init];
+    [dataTable addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    
+    [self configureView];
+    [self refreshTable];
+}
+
+- (void)refreshTable
+{
+    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
+    balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
+    [refreshControl endRefreshing];
+    [dataTable reloadData];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -31,46 +60,19 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         
-        // Update the view.
         [self configureView];
     }
-
+    
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
+    }
 }
 
 - (void)configureView
 {
-    balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
-
     if (self.detailItem) {
-        self.detailDescriptionLabel.title = [self.detailItem description];
-        
- //       HTTPClient = [INYHTTPClient new];
- //       [HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
+        self.detailDescriptionLabel.title = self.detailItem;
     }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	
-    UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable:)];
-    self.navigationItem.rightBarButtonItem = addButtonRefresh;
-    
-    [self configureView];
-}
-
-- (void)refreshTable:(id)sender
-{
-    [dataTable reloadData];
-    //[self configureView];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Split view

@@ -18,4 +18,6 @@
 - (NSArray *)getBalanceWithUserId:(NSString*)idUser;
 - (NSString *)getBalanceUserFriendlyWithBalance:(INYBalance*)inybalance;
 
+
+
 @end

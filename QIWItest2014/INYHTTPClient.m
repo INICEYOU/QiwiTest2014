@@ -16,14 +16,6 @@
 
 @implementation INYHTTPClient
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
-                                                         diskCapacity:20 * 1024 * 1024
-                                                             diskPath:nil];
-    [NSURLCache setSharedURLCache:URLCache];
-    return YES;
-}
-
 - (void)RequestWithURL:(NSString*)url option:(NSString*)option
 {
     NSString *URLfull = [url stringByAppendingString:option];
@@ -157,6 +149,19 @@ didReceiveResponse:(NSURLResponse *)response
         NSLog(@"user  %@", codeMessage);
     }
     // освобождаем соединение и полученные данные
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse *)cachedResponse
+{
+    NSMutableDictionary *mutableUserInfo = [[cachedResponse userInfo] mutableCopy];
+    NSMutableData *mutableData = [[cachedResponse data] mutableCopy];
+    NSURLCacheStoragePolicy storagePolicy = NSURLCacheStorageAllowed;
+    
+    return [[NSCachedURLResponse alloc] initWithResponse:[cachedResponse response]
+                                                    data:mutableData
+                                                userInfo:mutableUserInfo
+                                           storagePolicy:storagePolicy];
 }
 
 @end
