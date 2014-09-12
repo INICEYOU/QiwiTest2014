@@ -58,6 +58,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <connections>
+                        <outlet property="dataTable" destination="mLL-gJ-YKr" id="APK-iR-e7K"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
@@ -159,6 +162,7 @@
                     <connections>
                         <outlet property="Balance" destination="Onp-Bj-xcr" id="9rM-Op-KT3"/>
                         <outlet property="Currency" destination="Xpq-kl-krQ" id="5nx-hj-0UW"/>
+                        <outlet property="dataTable" destination="Z92-wl-rFm" id="T3R-hS-cQd"/>
                         <outlet property="detailDescriptionLabel" destination="Lei-5M-9Gs" id="sCT-F7-F6f"/>
                     </connections>
                 </viewController>

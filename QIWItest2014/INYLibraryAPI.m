@@ -8,8 +8,6 @@
 
 #import "INYLibraryAPI.h"
 #import "INYPersistencyManager.h"
-
-
 #import "INYHTTPClient.h"
 
 
@@ -18,7 +16,6 @@
 {
     INYPersistencyManager *persistencyManager;
     INYHTTPClient *httpClient;
-    BOOL isOnline;
 }
 @end
 
@@ -31,7 +28,6 @@
     {
         persistencyManager = [[INYPersistencyManager alloc] init];
         httpClient = [[INYHTTPClient alloc] init];
-        isOnline = NO;
     }
     return self;
 }
@@ -51,23 +47,11 @@
 
 - (NSArray *)getUsers
 {
-    /*
-    if (isOnline)
-    {
-        
-    }
-    */
     return [persistencyManager getUsers];
 }
 
 - (NSArray *)getBalances
 {
-    /*
-     if (isOnline)
-     {
-     
-     }
-     */
     return [persistencyManager getBalances];
 }
 

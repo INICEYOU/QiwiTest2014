@@ -14,8 +14,9 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 @interface INYMasterViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
-    UITableView * dataTable;
+  //  UITableView * dataTable;
     NSArray * allUsers;
+    IBOutlet UITableView *dataTable;
 }
 @end
 
@@ -30,16 +31,9 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     [super awakeFromNib];
 }
 
--(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    
-    return YES;
-}
-
 - (void)viewDidLoad
 {
-    allUsers = [[INYLibraryAPI sharedInstance] getUsers];
     
-    dataTable = [UITableView new];
     
     //////////////////////////////////////////////////////////////////////
     //[dataTable reloadData];
@@ -62,12 +56,23 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (INYDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
  
-
     
+    
+    
+    
+    allUsers = [[INYLibraryAPI sharedInstance] getUsers];
+    
+ //   dataTable = [UITableView new];
+    
+    UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable:)];
+    self.navigationItem.rightBarButtonItem = addButtonRefresh;
 
 }
 
-
+- (void)refreshTable:(id)sender
+{
+   [dataTable reloadData];
+}
 
 - (void)didReceiveMemoryWarning
 {

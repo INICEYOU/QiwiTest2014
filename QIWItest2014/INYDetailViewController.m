@@ -15,6 +15,8 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 {
     //    INYHTTPClient *HTTPClient;
     NSArray *balances;
+    IBOutlet UITableView *dataTable;
+  //  UITableView * dataTable;
 }
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (weak, nonatomic) IBOutlet UILabel *Balance;
@@ -74,7 +76,15 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable:)];
+    self.navigationItem.rightBarButtonItem = addButtonRefresh;
+    
     [self configureView];
+}
+
+- (void)refreshTable:(id)sender
+{
+    [dataTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning
