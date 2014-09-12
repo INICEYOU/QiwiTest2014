@@ -43,9 +43,6 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (void)configureView
 {
     balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
- //   NSLog(@"_detailItem %@",_detailItem);
- //   NSLog(@"balances %d",[balances count]);
-    // Update the user interface for the detail item.
 
     if (self.detailItem) {
         self.detailDescriptionLabel.title = [self.detailItem description];
@@ -58,7 +55,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
     UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable:)];
     self.navigationItem.rightBarButtonItem = addButtonRefresh;
     
@@ -74,7 +71,6 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Split view
@@ -111,33 +107,6 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     
     cell.textLabel.text = [[INYLibraryAPI sharedInstance] getBalanceUserFriendlyWithBalance:balances[indexPath.row]];
     return cell;
-}
-
-- (NSLocale *) findLocaleByCurrencyCode:(NSString *)_currencyCode
-{
-    NSArray *locales = [NSLocale availableLocaleIdentifiers];
-    NSLocale *locale = nil;
-    NSString *localeId;
-    
-    for (localeId in locales) {
-        locale = [[NSLocale alloc] initWithLocaleIdentifier:localeId] ;
-        NSString *code = [locale objectForKey:NSLocaleCurrencyCode];
-        if ([code isEqualToString:_currencyCode])
-            break;
-        else
-            locale = nil;
-    }
-
-    if (locale == nil) {
-        NSDictionary *components = [NSDictionary dictionaryWithObject:_currencyCode
-                                                               forKey:NSLocaleCurrencyCode];
-        
-        localeId = [NSLocale localeIdentifierFromComponents:components];
-        locale = [[NSLocale alloc] initWithLocaleIdentifier:localeId];
-        
-        NSLog(@"11111111111  %@",_currencyCode);
-    }
-    return locale;
 }
 
 @end
