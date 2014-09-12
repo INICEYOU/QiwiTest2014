@@ -13,17 +13,10 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 @interface INYDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
-    //    INYHTTPClient *HTTPClient;
     NSArray *balances;
     IBOutlet UITableView *dataTable;
-  //  UITableView * dataTable;
 }
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
-@property (weak, nonatomic) IBOutlet UILabel *Balance;
-@property (weak, nonatomic) IBOutlet UILabel *Currency;
-
-- (IBAction)refreshBalance:(id)sender;
-
 
 - (void)configureView;
 
@@ -47,12 +40,6 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     }        
 }
 
-- (IBAction)refreshBalance:(id)sender {
-    //HTTPClient = [INYHTTPClient new];
-    //[HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
-    [self configureView];
-}
-
 - (void)configureView
 {
     balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
@@ -61,14 +48,10 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-        
+        self.detailDescriptionLabel.title = [self.detailItem description];
         
  //       HTTPClient = [INYHTTPClient new];
  //       [HTTPClient RequestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
-        
-  //      self.Balance.text = HTTPClient.money;
-  //      self.Currency.text = HTTPClient.currency;
     }
 }
 
@@ -85,6 +68,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (void)refreshTable:(id)sender
 {
     [dataTable reloadData];
+    //[self configureView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,7 +82,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
     barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:NO];
     self.masterPopoverController = popoverController;
 }
 

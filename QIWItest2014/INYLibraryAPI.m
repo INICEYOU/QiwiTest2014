@@ -70,4 +70,9 @@
     return [persistencyManager getBalanceUserFriendlyWithBalance:inybalance];
 }
 
+- (void)RequestWithURL:(NSString*)url option:(NSString*)option
+{
+    [httpClient RequestWithURL:url option:option];
+}
+
 @end

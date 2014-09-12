@@ -16,13 +16,34 @@
 
 @implementation INYHTTPClient
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+                                                         diskCapacity:20 * 1024 * 1024
+                                                             diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    return YES;
+}
+
 - (void)RequestWithURL:(NSString*)url option:(NSString*)option
 {
     NSString *URLfull = [url stringByAppendingString:option];
     NSLog(@"%@",URLfull);
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLfull]
-                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                         timeoutInterval:15.0];
+    
+    NSURLRequest *request = [NSURLRequest new];
+    
+    if ([url isEqualToString:@"http://je.su/test"]) {
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLfull]
+                                    cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                timeoutInterval:15.0];
+    } else {
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLfull]
+                                    cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                timeoutInterval:15.0];
+    }
+    
+    
+    //NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLfull] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15.0];
+    
     urlString = url;
     // создаём соединение и начинаем загрузку
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -34,7 +55,7 @@
     } else {
         // при попытке соединиться произошла ошибка
     }
-    
+ /*
     ///TEMP
     _idUser = @"7";
     _name = @"name";
@@ -46,7 +67,7 @@
     _currency = @"USD";
     NSLog(@"balance  %@  %@",_money,_currency);
     ///
-
+*/
 }
 
 - (void)connection:(NSURLConnection *)connection
@@ -107,7 +128,7 @@ didReceiveResponse:(NSURLResponse *)response
     NSLog(@"valueCode  %d", valueCode);
     
     if (valueCode == 0) {
-        if ([urlString  isEqual: @"http://je.su/test"]) {
+        if ([urlString  isEqualToString: @"http://je.su/test"]) {
             
             SMXMLElement *users = [document childNamed:@"users"];
             for (SMXMLElement *user in [users childrenNamed:@"user"]) {

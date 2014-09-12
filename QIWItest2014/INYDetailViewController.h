@@ -12,5 +12,7 @@
 
 @property (strong, nonatomic) NSString *detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+@property (strong, nonatomic) IBOutlet UINavigationItem *detailDescriptionLabel;
+
 @end

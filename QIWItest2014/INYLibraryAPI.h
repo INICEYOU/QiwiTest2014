@@ -21,4 +21,6 @@
 - (NSArray *)getBalanceWithUserId:(NSString*)idUser;
 - (NSString *)getBalanceUserFriendlyWithBalance:(INYBalance*)inybalance;
 
+- (void)RequestWithURL:(NSString*)url option:(NSString*)option;
+
 @end

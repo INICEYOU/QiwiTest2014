@@ -62,16 +62,19 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     
     allUsers = [[INYLibraryAPI sharedInstance] getUsers];
     
+    
+    
  //   dataTable = [UITableView new];
     
-    UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable:)];
+    UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable)];
     self.navigationItem.rightBarButtonItem = addButtonRefresh;
-
+    [self refreshTable];
 }
 
-- (void)refreshTable:(id)sender
+- (void)refreshTable
 {
-   [dataTable reloadData];
+    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+    [dataTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,7 +121,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
  //   currentUsersData = [users tr_tableRepresentation];
     
     
-    cell.textLabel.text = users.name;
+    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ %@",users.name,users.secondName];
  //   cell.detailTextLabel.text = currentUsersData[@"values"];
   /*
     
@@ -139,6 +142,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     // Return NO if you do not want the specified item to be editable.
     return NO;
 }
+
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
