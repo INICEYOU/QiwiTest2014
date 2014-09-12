@@ -36,9 +36,13 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     [dataTable addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
+    if (_detailItem == nil){
+        _detailItem = @"0";
+    }
+
+    [self refreshTable];
     
     [self configureView];
-    [self refreshTable];
 }
 
 - (void)refreshTable
@@ -55,7 +59,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     dispatch_sync(downloadQueue2, ^{
         
         // do our long running process here
-        //[NSThread sleepForTimeInterval:1];
+        [NSThread sleepForTimeInterval:0.6];
         [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
         
         // do any UI stuff on the main UI thread
@@ -64,7 +68,6 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
             balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
             [refreshControl endRefreshing];
             [dataTable reloadData];
-            
             
             [spinner stopAnimating];
             
@@ -115,10 +118,10 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    /*
+    
     barButtonItem.title =NSLocalizedString(@"Пользователи", @"Пользователи");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-     */
+     
     self.masterPopoverController = popoverController;
 }
 

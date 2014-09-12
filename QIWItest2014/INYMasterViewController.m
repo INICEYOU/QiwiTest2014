@@ -51,7 +51,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+   // [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
 
 }
 
@@ -69,15 +69,14 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     dispatch_sync(downloadQueue, ^{
         
         // do our long running process here
-        //[NSThread sleepForTimeInterval:1];
+        [NSThread sleepForTimeInterval:0.5];
         [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
         
         // do any UI stuff on the main UI thread
         dispatch_async(dispatch_get_main_queue(), ^{
-        //    self.myLabel.text = @"After!";
             allUsers = [[INYLibraryAPI sharedInstance] getUsers];
-            [refreshControl endRefreshing];
             [dataTable reloadData];
+            [refreshControl endRefreshing];
             [spinner stopAnimating];
             
             NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
@@ -94,11 +93,6 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
         
     });
     
-    /*[[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
-    allUsers = [[INYLibraryAPI sharedInstance] getUsers];
-    [refreshControl endRefreshing];
-    [dataTable reloadData];
-    */
     
 }
 
@@ -116,7 +110,6 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return _objects.count;
     return [allUsers count];
 }
 
