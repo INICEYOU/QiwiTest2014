@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="t5U-Mj-fgm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="t5U-Mj-fgm">
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,6 +63,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="t5U-Mj-fgm" secondAttribute="trailing" id="9Sl-Uq-euj"/>
+                            <constraint firstItem="t5U-Mj-fgm" firstAttribute="top" secondItem="svH-Pt-448" secondAttribute="top" id="a18-fN-VA9"/>
+                            <constraint firstItem="t5U-Mj-fgm" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="gpa-4y-UUF"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="t5U-Mj-fgm" secondAttribute="bottom" id="vsC-QS-V9U"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>

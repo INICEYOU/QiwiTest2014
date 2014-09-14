@@ -28,6 +28,9 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:@"refreshBalanceViewAfterConnection" object:nil];
+
 	
     UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable)];
     self.navigationItem.rightBarButtonItem = addButtonRefresh;
@@ -39,37 +42,46 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     if (_detailItem == nil){
         _detailItem = @"0";
     }
-
-    [self refreshTable];
     
     [self configureView];
+    [self refreshTable];
+}
+
+- (void)refreshViewAfterConnection
+{
+    balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
+    [dataTable reloadData];
 }
 
 - (void)refreshTable
 {
-
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = CGPointMake(160, 240);
-    spinner.hidesWhenStopped = YES;
-    [self.view addSubview:spinner];
-    [spinner startAnimating];
     
+    if(![refreshControl isRefreshing]){
+        spinner.center = CGPointMake(self.view.center.x,self.view.center.y);
+        spinner.hidesWhenStopped = YES;
+        [self.view addSubview:spinner];
+        [spinner startAnimating];
+    }
+    
+    
+    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
 
     dispatch_queue_t downloadQueue2 = dispatch_queue_create("downloader2", NULL);
-    dispatch_sync(downloadQueue2, ^{
-        
-
-        [NSThread sleepForTimeInterval:0.6];
-        [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
-        
+    dispatch_async(downloadQueue2, ^{
+     
+        [NSThread sleepForTimeInterval:0.5];
 
         dispatch_async(dispatch_get_main_queue(), ^{
 
-            balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
-            [refreshControl endRefreshing];
-            [dataTable reloadData];
+            [self refreshViewAfterConnection];
             
+            
+            if(![refreshControl isRefreshing]){
             [spinner stopAnimating];
+            } else {
+                [refreshControl endRefreshing];
+            }
             
             NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
             if (![message isEqualToString:@""]) {
@@ -82,9 +94,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
                 [alert show];
             }
         });
-        
     });
-
 }
 
 - (void)didReceiveMemoryWarning

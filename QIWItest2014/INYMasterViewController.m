@@ -35,6 +35,10 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     
     [super viewDidLoad];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:@"refreshUsersViewAfterConnection" object:nil];
+
 
     self.detailViewController = (INYDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
  
@@ -46,18 +50,22 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     [dataTable addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
+
+    
     [self refreshTable];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+- (void)refreshViewAfterConnection
+{
+    allUsers = [[INYLibraryAPI sharedInstance] getUsers];
+    [dataTable reloadData];
 }
 
 - (void)refreshTable
 {
 
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = CGPointMake(160, 240);
+    spinner.center = CGPointMake(self.view.center.x,self.view.center.y);
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
@@ -66,14 +74,13 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
     dispatch_sync(downloadQueue, ^{
         
-
-        [NSThread sleepForTimeInterval:0.5];
         [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+       // [NSThread sleepForTimeInterval:1];
+        
         
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            allUsers = [[INYLibraryAPI sharedInstance] getUsers];
-            [dataTable reloadData];
+            [self refreshViewAfterConnection];
             [refreshControl endRefreshing];
             [spinner stopAnimating];
             

@@ -75,6 +75,11 @@ didReceiveResponse:(NSURLResponse *)response
     
     [[INYLibraryAPI sharedInstance]getWithReceivedData:_receivedData urlString:urlString optionIdUser:optionIdUser];
     
+    if ([urlString isEqualToString:@"http://je.su/test"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshUsersViewAfterConnection" object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshBalanceViewAfterConnection" object:nil];
+    }
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
