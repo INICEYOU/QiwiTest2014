@@ -116,7 +116,6 @@
             currentBalance.amount = [balance attributeNamed:@"amount"];
             currentBalance.idUser = optionIdUser;
             [newBalances addObject:currentBalance];
-            NSLog(@"%@",currentBalance.currency);
         }
         balances = newBalances;
     }

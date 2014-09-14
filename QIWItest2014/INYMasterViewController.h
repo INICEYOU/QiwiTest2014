@@ -10,7 +10,7 @@
 
 @class INYDetailViewController;
 
-@interface INYMasterViewController : UITableViewController
+@interface INYMasterViewController : UITableViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) INYDetailViewController *detailViewController;
 

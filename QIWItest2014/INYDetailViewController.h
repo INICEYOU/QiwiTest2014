@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface INYDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface INYDetailViewController : UIViewController
 
 
 @property (strong, nonatomic) NSString *detailItem;

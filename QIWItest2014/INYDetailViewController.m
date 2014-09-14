@@ -16,8 +16,8 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     NSArray *balances;
     IBOutlet UITableView *dataTable;
     UIRefreshControl *refreshControl;
+    UIActivityIndicatorView *spinner;
 }
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 - (void)configureView;
 
@@ -39,6 +39,11 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     [dataTable addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(self.view.center.x,self.view.center.y);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    
     if (_detailItem == nil){
         _detailItem = @"0";
     }
@@ -51,50 +56,32 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 {
     balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
     [dataTable reloadData];
+    
+    if(![refreshControl isRefreshing]){
+        [spinner stopAnimating];
+    } else {
+        [refreshControl endRefreshing];
+    }
+    
+    NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
+    if (![message isEqualToString:@""]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка"
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)refreshTable
 {
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
     if(![refreshControl isRefreshing]){
-        spinner.center = CGPointMake(self.view.center.x,self.view.center.y);
-        spinner.hidesWhenStopped = YES;
-        [self.view addSubview:spinner];
         [spinner startAnimating];
     }
     
-    
     [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
-
-    dispatch_queue_t downloadQueue2 = dispatch_queue_create("downloader2", NULL);
-    dispatch_async(downloadQueue2, ^{
-     
-        [NSThread sleepForTimeInterval:0.5];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-
-            //[self refreshViewAfterConnection];
-            
-            
-            if(![refreshControl isRefreshing]){
-            [spinner stopAnimating];
-            } else {
-                [refreshControl endRefreshing];
-            }
-            
-            NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
-            if (![message isEqualToString:@""]) {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка"
-                                                                message:message
-                                                               delegate:self
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        });
-    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,10 +98,11 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
         
         [self configureView];
     }
-    
+    /*
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }
+     */
 }
 
 - (void)configureView
@@ -124,21 +112,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     }
 }
 
-#pragma mark - Split view
 
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-{
-    
-    barButtonItem.title =NSLocalizedString(@"Пользователи", @"Пользователи");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-     
-    self.masterPopoverController = popoverController;
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    self.masterPopoverController = nil;
-}
 
 #pragma mark - Table View
 

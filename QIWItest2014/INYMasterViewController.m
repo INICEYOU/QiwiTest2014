@@ -17,7 +17,10 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     NSArray * allUsers;
     IBOutlet UITableView *dataTable;
     UIRefreshControl *refreshControl;
+    UIActivityIndicatorView *spinner;
 }
+@property (strong, nonatomic) UIPopoverController *masterPopoverController;
+
 @end
 
 @implementation INYMasterViewController
@@ -50,7 +53,10 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     [dataTable addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
-
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(self.view.center.x,self.view.center.y);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
     
     [self refreshTable];
 }
@@ -59,46 +65,31 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     allUsers = [[INYLibraryAPI sharedInstance] getUsers];
     [dataTable reloadData];
+    
+    if(![refreshControl isRefreshing]){
+        [spinner stopAnimating];
+    } else {
+        [refreshControl endRefreshing];
+    }
+    
+    NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
+    if (![message isEqualToString:@""]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка"
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)refreshTable
 {
-
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = CGPointMake(self.view.center.x,self.view.center.y);
-    spinner.hidesWhenStopped = YES;
-    [self.view addSubview:spinner];
-    [spinner startAnimating];
-    
-
-    dispatch_queue_t downloadQueue = dispatch_queue_create("downloader", NULL);
-    dispatch_sync(downloadQueue, ^{
-        
-        [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
-       // [NSThread sleepForTimeInterval:1];
-        
-        
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //[self refreshViewAfterConnection];
-            [refreshControl endRefreshing];
-            [spinner stopAnimating];
-            
-            NSString *message = [[INYLibraryAPI sharedInstance] codeMessageRequest];
-            if (![message isEqualToString:@""]) {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Код сообщения"
-                                                                message:message
-                                                               delegate:self
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        });
-        
-    });
-    
-    
+    if(![refreshControl isRefreshing]){
+        [spinner startAnimating];
+    }
+    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
 }
 
 - (void)didReceiveMemoryWarning
@@ -139,6 +130,22 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         [[segue destinationViewController] setDetailItem:[[INYLibraryAPI sharedInstance] getUserIdWithIndex:indexPath]];
     }
+}
+
+#pragma mark - Split view
+
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+{
+    barButtonItem.title =NSLocalizedString(@"Пользователи", @"Пользователи");
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    
+    self.masterPopoverController = popoverController;
+   // [splitViewController setHidesMasterViewInPortrait:NO];
+}
+
+- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    //self.masterPopoverController = nil;
 }
 
 @end
