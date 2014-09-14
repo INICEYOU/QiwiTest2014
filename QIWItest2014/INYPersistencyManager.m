@@ -104,7 +104,6 @@
     NSString *codeMessage = @"";
     
     int valueCode = [document valueWithPath:@"result-code"].intValue;
-    NSLog(@"valueCode  %d", valueCode);
     
     if(![urlString  isEqualToString: @"http://je.su/test"]){
         NSMutableArray *newBalances = [NSMutableArray new];

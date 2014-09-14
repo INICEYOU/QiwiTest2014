@@ -18,6 +18,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     UIRefreshControl *refreshControl;
     UIActivityIndicatorView *spinner;
 }
+@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 - (void)configureView;
 
@@ -98,11 +99,10 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
         
         [self configureView];
     }
-    /*
+    
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }
-     */
 }
 
 - (void)configureView
@@ -112,7 +112,36 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     }
 }
 
+#pragma mark - Split view
 
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+{
+    
+    barButtonItem.title =NSLocalizedString(@"Пользователи", @"Пользователи");
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+     
+    self.masterPopoverController = popoverController;
+}
+
+- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    self.masterPopoverController = nil;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc
+   shouldHideViewController:(UIViewController *)vc
+              inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
+
+- (void)splitViewController:(UISplitViewController*)svc
+          popoverController:(UIPopoverController*)pc
+  willPresentViewController:(UIViewController *)aViewController{
+    if ([pc isPopoverVisible]) {
+        [pc dismissPopoverAnimated:YES];
+    }
+}
 
 #pragma mark - Table View
 

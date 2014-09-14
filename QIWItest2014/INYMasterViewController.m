@@ -39,6 +39,10 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     
     [super viewDidLoad];
     
+    if (self.masterPopoverController != nil) {
+        [self.masterPopoverController dismissPopoverAnimated:YES];
+    }
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:@"refreshUsersViewAfterConnection" object:nil];
 
