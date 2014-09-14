@@ -80,7 +80,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
         
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self refreshViewAfterConnection];
+            //[self refreshViewAfterConnection];
             [refreshControl endRefreshing];
             [spinner stopAnimating];
             

@@ -74,7 +74,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
         dispatch_async(dispatch_get_main_queue(), ^{
 
-            [self refreshViewAfterConnection];
+            //[self refreshViewAfterConnection];
             
             
             if(![refreshControl isRefreshing]){
