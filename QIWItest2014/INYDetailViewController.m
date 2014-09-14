@@ -48,7 +48,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     if (_detailItem == nil){
         _detailItem = @"0";
     }
-    
+    NSLog(@"_detailItem = %@",_detailItem);
     [self configureView];
     [self refreshTable];
 }
@@ -98,6 +98,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
         _detailItem = newDetailItem;
         
         [self configureView];
+        [self refreshTable];
     }
     
     if (self.masterPopoverController != nil) {

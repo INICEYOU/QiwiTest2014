@@ -67,6 +67,14 @@
     [formatter setLocale:[self findLocaleByCurrencyCode:inybalance.currency]];
     [formatter setCurrencyCode:inybalance.currency];
     NSString *currencyString = [formatter stringFromNumber:@([inybalance.amount floatValue])];
+    
+    if ([inybalance.currency isEqualToString:@"RUB"]){
+        if ([inybalance.amount isEqual:@"0.00"])
+            return [[NSString alloc]initWithFormat:@"%@", inybalance.amount];
+        else return [[NSString alloc]initWithFormat:@"%@ руб.", inybalance.amount];
+
+    }
+    
     return currencyString;
 }
 

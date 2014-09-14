@@ -15,11 +15,9 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 @interface INYMasterViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     NSArray * allUsers;
-    IBOutlet UITableView *dataTable;
     UIRefreshControl *refreshControl;
     UIActivityIndicatorView *spinner;
 }
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 @end
 
@@ -39,11 +37,6 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     
     [super viewDidLoad];
     
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:@"refreshUsersViewAfterConnection" object:nil];
 
 
@@ -54,21 +47,22 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     self.navigationItem.rightBarButtonItem = addButtonRefresh;
     
     refreshControl = [[UIRefreshControl alloc]init];
-    [dataTable addSubview:refreshControl];
+    [self.view addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(self.view.center.x,self.view.center.y);
     spinner.hidesWhenStopped = YES;
-    [self.view addSubview:spinner];
+    [self.tableView addSubview:spinner];
     
     [self refreshTable];
+    NSLog(@"=============");
 }
 
 - (void)refreshViewAfterConnection
 {
     allUsers = [[INYLibraryAPI sharedInstance] getUsers];
-    [dataTable reloadData];
+    [self.tableView reloadData];
     
     if(![refreshControl isRefreshing]){
         [spinner stopAnimating];
@@ -134,22 +128,6 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         [[segue destinationViewController] setDetailItem:[[INYLibraryAPI sharedInstance] getUserIdWithIndex:indexPath]];
     }
-}
-
-#pragma mark - Split view
-
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-{
-    barButtonItem.title =NSLocalizedString(@"Пользователи", @"Пользователи");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    
-    self.masterPopoverController = popoverController;
-   // [splitViewController setHidesMasterViewInPortrait:NO];
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    //self.masterPopoverController = nil;
 }
 
 @end

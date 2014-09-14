@@ -58,9 +58,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Пользователи" id="tQt-TN-PWz"/>
-                    <connections>
-                        <outlet property="dataTable" destination="mLL-gJ-YKr" id="APK-iR-e7K"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,7 +75,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Z92-wl-rFm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Z92-wl-rFm">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -108,6 +105,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Z92-wl-rFm" secondAttribute="bottom" id="SgU-mU-DqU"/>
+                            <constraint firstItem="Z92-wl-rFm" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" id="Wqo-UW-olz"/>
+                            <constraint firstItem="Z92-wl-rFm" firstAttribute="top" secondItem="MMQ-IT-qOo" secondAttribute="top" id="Xpz-1W-IZ8"/>
+                            <constraint firstAttribute="trailing" secondItem="Z92-wl-rFm" secondAttribute="trailing" id="eh2-I6-Oy5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Баланс" id="cra-N8-TIN"/>
                     <connections>
