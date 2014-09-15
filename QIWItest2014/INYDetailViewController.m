@@ -48,9 +48,8 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     if (_detailItem == nil){
         _detailItem = @"0";
     }
-    NSLog(@"_detailItem = %@",_detailItem);
+
     [self configureView];
-    [self refreshTable];
 }
 
 - (void)refreshViewAfterConnection
@@ -70,8 +69,8 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка"
                                                         message:message
                                                        delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
+                                              cancelButtonTitle:@"Отменить"
+                                              otherButtonTitles:@"Повторить",nil];
         [alert show];
     }
 }
@@ -83,6 +82,14 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     }
     
     [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self refreshTable];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,7 +116,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 - (void)configureView
 {
     if (self.detailItem) {
-        self.detailDescriptionLabel.title = [NSString stringWithFormat:@"# %@",self.detailItem];
+        self.detailDescriptionLabel.title = [NSString stringWithFormat:@"Баланс # %@",self.detailItem];
     }
 }
 

@@ -145,7 +145,6 @@
     } else {
         SMXMLElement *codeResult = [document childNamed:@"result-code"];
         codeMessage = [codeResult attributeNamed:@"message"];
-        NSLog(@"user  %@", codeMessage);
     }
     codeMessageRequest = codeMessage;
 }

@@ -21,8 +21,6 @@
 - (void)RequestWithURL:(NSString*)url option:(NSString*)option
 {
     NSString *URLfull = [url stringByAppendingString:option];
-    NSLog(@"%@",URLfull);
-    
     NSURLRequest *request = [NSURLRequest new];
     
     if ([url isEqualToString:@"http://je.su/test"]) {
@@ -72,7 +70,6 @@ didReceiveResponse:(NSURLResponse *)response
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
     [[INYLibraryAPI sharedInstance]getWithReceivedData:_receivedData urlString:urlString optionIdUser:optionIdUser];
     
     if ([urlString isEqualToString:@"http://je.su/test"]) {

@@ -19,6 +19,9 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     UIActivityIndicatorView *spinner;
 }
 
+- (void)refreshViewAfterConnection;
+- (void)refreshTable;
+
 @end
 
 @implementation INYMasterViewController
@@ -39,7 +42,6 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:@"refreshUsersViewAfterConnection" object:nil];
 
-
     self.detailViewController = (INYDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
  
     UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -56,7 +58,6 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     [self.tableView addSubview:spinner];
     
     [self refreshTable];
-    NSLog(@"=============");
 }
 
 - (void)refreshViewAfterConnection
@@ -76,8 +77,8 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка"
                                                         message:message
                                                        delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
+                                              cancelButtonTitle:@"Отменить"
+                                              otherButtonTitles:@"Повторить",nil];
         [alert show];
     }
 }
@@ -88,6 +89,14 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
         [spinner startAnimating];
     }
     [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self refreshTable];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,7 +120,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     INYUsers *users = allUsers[indexPath.row];
-    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ %@",users.name,users.secondName];
+    cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ %@",users.secondName,users.name];
     return cell;
 }
 
