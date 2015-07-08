@@ -10,6 +10,7 @@
 #import "INYLibraryAPI.h"
 
 static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuser&id=";
+static NSString * const refreshBalanceViewAfterConnection = @"refreshBalanceViewAfterConnection";
 
 @interface INYDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -30,7 +31,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:@"refreshBalanceViewAfterConnection" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:refreshBalanceViewAfterConnection object:nil];
 
 	
     UIBarButtonItem *addButtonRefresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable)];
@@ -45,8 +46,8 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     
-    if (_detailItem == nil){
-        _detailItem = @"0";
+    if (self.detailItem == nil){
+        self.detailItem = @"0";
     }
 
     [self configureView];
@@ -54,7 +55,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 - (void)refreshViewAfterConnection
 {
-    balances = [[INYLibraryAPI sharedInstance] getBalanceWithUserId:_detailItem];
+    balances = [[INYLibraryAPI sharedInstance] balanceWithUserId:self.detailItem];
     [dataTable reloadData];
     
     if(![refreshControl isRefreshing]){
@@ -81,7 +82,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
         [spinner startAnimating];
     }
     
-    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRgetMoneyWithUserId option:_detailItem];
+    [[INYLibraryAPI sharedInstance]requestWithURL:ULRgetMoneyWithUserId option:self.detailItem];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -101,8 +102,8 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    if (self.detailItem != newDetailItem) { // 1
+        self.detailItem = newDetailItem;
         
         [self configureView];
         [self refreshTable];
@@ -167,7 +168,7 @@ static NSString * const ULRgetMoneyWithUserId = @"http://je.su/test?mode=showuse
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
     
-    cell.textLabel.text = [[INYLibraryAPI sharedInstance] getBalanceUserFriendlyWithBalance:balances[indexPath.row]];
+    cell.textLabel.text = [[INYLibraryAPI sharedInstance] balanceUserFriendlyWithBalance:balances[indexPath.row]];
     return cell;
 }
 

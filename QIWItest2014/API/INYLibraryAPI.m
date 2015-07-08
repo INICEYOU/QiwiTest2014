@@ -45,40 +45,40 @@
     return _sharedInstance;
 }
 
-- (NSArray *)getUsers
+- (NSArray *)users
 {
-    return [persistencyManager getUsers];
+    return [persistencyManager users];
 }
 
-- (NSArray *)getBalances
+- (NSArray *)balances
 {
-    return [persistencyManager getBalances];
+    return [persistencyManager balances];
 }
 
-- (NSString *)getUserIdWithIndex:(NSIndexPath*)index
+- (NSString *)userIdWithIndex:(NSIndexPath *)index
 {
-    return [persistencyManager getUserIdWithIndex:index];
+    return [persistencyManager userIdWithIndex:index];
 }
 
-- (NSArray *)getBalanceWithUserId:(NSString*)idUser
+- (NSArray *)balanceWithUserId:(NSString*)idUser
 {
-    return [persistencyManager getBalanceWithUserId:idUser];
+    return [persistencyManager balanceWithUserId:idUser];
 }
 
-- (NSString *)getBalanceUserFriendlyWithBalance:(INYBalance*)inybalance
+- (NSString *)balanceUserFriendlyWithBalance:(INYBalance*)inybalance
 {
-    return [persistencyManager getBalanceUserFriendlyWithBalance:inybalance];
+    return [persistencyManager balanceUserFriendlyWithBalance:inybalance];
 }
 
-- (void)RequestWithURL:(NSString*)url option:(NSString*)option
+- (void)requestWithURL:(NSString*)url option:(NSString*)option
 {
-    [httpClient RequestWithURL:url option:option];
+    [httpClient requestWithURL:url option:option];
 }
 
-- (void)getWithReceivedData:(NSData*)receivedData urlString:(NSString*)urlString optionIdUser:(NSString*)optionIdUser
+- (void)withReceivedData:(NSData*)receivedData urlString:(NSString*)urlString optionIdUser:(NSString*)optionIdUser
 {
     [persistencyManager
-     getWithReceivedData:receivedData urlString:urlString optionIdUser:optionIdUser];
+     withReceivedData:receivedData urlString:urlString optionIdUser:optionIdUser];
 }
 
 - (NSString *)codeMessageRequest{

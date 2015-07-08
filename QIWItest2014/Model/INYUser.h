@@ -1,5 +1,5 @@
 //
-//  INYUsers.h
+//  INYUser.h
 //  QIWItest2014
 //
 //  Created by Nice on 11/09/2014.
@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface INYUsers : NSObject
+@interface INYUser : NSObject
 
-@property (strong, nonatomic) NSString *idUser, *name, *secondName;
+@property (strong, nonatomic) NSString *idUser;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *secondName;
 
 - (id)initWithId:(NSString *)idUser
             name:(NSString *)name

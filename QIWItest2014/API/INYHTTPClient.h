@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) NSMutableData *receivedData;
 
-- (void)RequestWithURL:(NSString*)url option:(NSString*)option;
+- (void)requestWithURL:(NSString *)url option:(NSString *)option;
 
 @end

@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0616E7AF19C1A08E005D620F /* INYUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7AE19C1A08E005D620F /* INYUsers.m */; };
-		0616E7B519C1A3C2005D620F /* SMXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7B419C1A3C2005D620F /* SMXMLDocument.m */; };
-		0616E7BB19C1A93F005D620F /* INYBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7BA19C1A93F005D620F /* INYBalance.m */; };
-		0616E7BF19C1C201005D620F /* INYHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7BE19C1C201005D620F /* INYHTTPClient.m */; };
-		0616E7C219C1F6D5005D620F /* INYLibraryAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7C119C1F6D5005D620F /* INYLibraryAPI.m */; };
-		0616E7C519C1F7C3005D620F /* INYPersistencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0616E7C419C1F7C3005D620F /* INYPersistencyManager.m */; };
 		0660040119BF24A400758C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040019BF24A400758C84 /* Foundation.framework */; };
 		0660040319BF24A400758C84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040219BF24A400758C84 /* CoreGraphics.framework */; };
 		0660040519BF24A400758C84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040419BF24A400758C84 /* UIKit.framework */; };
 		0660040B19BF24A400758C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0660040919BF24A400758C84 /* InfoPlist.strings */; };
 		0660040D19BF24A400758C84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0660040C19BF24A400758C84 /* main.m */; };
 		0660041119BF24A400758C84 /* INYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0660041019BF24A400758C84 /* INYAppDelegate.m */; };
-		0660041419BF24A400758C84 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0660041219BF24A400758C84 /* Main_iPhone.storyboard */; };
-		0660041719BF24A400758C84 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0660041519BF24A400758C84 /* Main_iPad.storyboard */; };
-		0660041A19BF24A400758C84 /* INYMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0660041919BF24A400758C84 /* INYMasterViewController.m */; };
-		0660041D19BF24A400758C84 /* INYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0660041C19BF24A400758C84 /* INYDetailViewController.m */; };
 		0660041F19BF24A400758C84 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0660041E19BF24A400758C84 /* Images.xcassets */; };
 		0660042619BF24A400758C84 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660042519BF24A400758C84 /* XCTest.framework */; };
 		0660042719BF24A400758C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040019BF24A400758C84 /* Foundation.framework */; };
 		0660042819BF24A400758C84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0660040419BF24A400758C84 /* UIKit.framework */; };
 		0660043019BF24A400758C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0660042E19BF24A400758C84 /* InfoPlist.strings */; };
 		0660043219BF24A400758C84 /* QIWItest2014Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0660043119BF24A400758C84 /* QIWItest2014Tests.m */; };
+		55E57C241B4D279000B0734A /* INYHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E57C1D1B4D279000B0734A /* INYHTTPClient.m */; };
+		55E57C251B4D279000B0734A /* INYLibraryAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E57C1F1B4D279000B0734A /* INYLibraryAPI.m */; };
+		55E57C261B4D279000B0734A /* INYPersistencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E57C211B4D279000B0734A /* INYPersistencyManager.m */; };
+		55E57C271B4D279000B0734A /* SMXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E57C231B4D279000B0734A /* SMXMLDocument.m */; };
+		55E57C2C1B4D27A200B0734A /* INYBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E57C291B4D27A200B0734A /* INYBalance.m */; };
+		55E57C2D1B4D27A200B0734A /* INYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E57C2B1B4D27A200B0734A /* INYUser.m */; };
+		55E57C301B4D27B300B0734A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55E57C2E1B4D27B300B0734A /* Main_iPad.storyboard */; };
+		55E57C311B4D27B300B0734A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55E57C2F1B4D27B300B0734A /* Main_iPhone.storyboard */; };
+		55E57C361B4D27C000B0734A /* INYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E57C331B4D27C000B0734A /* INYDetailViewController.m */; };
+		55E57C371B4D27C000B0734A /* INYMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E57C351B4D27C000B0734A /* INYMasterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,18 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0616E7AD19C1A08E005D620F /* INYUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYUsers.h; sourceTree = "<group>"; };
-		0616E7AE19C1A08E005D620F /* INYUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYUsers.m; sourceTree = "<group>"; };
-		0616E7B319C1A3C2005D620F /* SMXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMXMLDocument.h; sourceTree = "<group>"; };
-		0616E7B419C1A3C2005D620F /* SMXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMXMLDocument.m; sourceTree = "<group>"; };
-		0616E7B919C1A93F005D620F /* INYBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYBalance.h; sourceTree = "<group>"; };
-		0616E7BA19C1A93F005D620F /* INYBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYBalance.m; sourceTree = "<group>"; };
-		0616E7BD19C1C201005D620F /* INYHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYHTTPClient.h; sourceTree = "<group>"; };
-		0616E7BE19C1C201005D620F /* INYHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYHTTPClient.m; sourceTree = "<group>"; };
-		0616E7C019C1F6D5005D620F /* INYLibraryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYLibraryAPI.h; sourceTree = "<group>"; };
-		0616E7C119C1F6D5005D620F /* INYLibraryAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYLibraryAPI.m; sourceTree = "<group>"; };
-		0616E7C319C1F7C3005D620F /* INYPersistencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INYPersistencyManager.h; sourceTree = "<group>"; };
-		0616E7C419C1F7C3005D620F /* INYPersistencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INYPersistencyManager.m; sourceTree = "<group>"; };
 		066003FD19BF24A400758C84 /* QIWItest2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QIWItest2014.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0660040019BF24A400758C84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0660040219BF24A400758C84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,18 +52,30 @@
 		0660040E19BF24A400758C84 /* QIWItest2014-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QIWItest2014-Prefix.pch"; sourceTree = "<group>"; };
 		0660040F19BF24A400758C84 /* INYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INYAppDelegate.h; sourceTree = "<group>"; };
 		0660041019BF24A400758C84 /* INYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INYAppDelegate.m; sourceTree = "<group>"; };
-		0660041319BF24A400758C84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		0660041619BF24A400758C84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		0660041819BF24A400758C84 /* INYMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INYMasterViewController.h; sourceTree = "<group>"; };
-		0660041919BF24A400758C84 /* INYMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INYMasterViewController.m; sourceTree = "<group>"; };
-		0660041B19BF24A400758C84 /* INYDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INYDetailViewController.h; sourceTree = "<group>"; };
-		0660041C19BF24A400758C84 /* INYDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INYDetailViewController.m; sourceTree = "<group>"; };
 		0660041E19BF24A400758C84 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0660042419BF24A400758C84 /* QIWItest2014Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QIWItest2014Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0660042519BF24A400758C84 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0660042D19BF24A400758C84 /* QIWItest2014Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QIWItest2014Tests-Info.plist"; sourceTree = "<group>"; };
 		0660042F19BF24A400758C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0660043119BF24A400758C84 /* QIWItest2014Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QIWItest2014Tests.m; sourceTree = "<group>"; };
+		55E57C1C1B4D279000B0734A /* INYHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INYHTTPClient.h; path = API/INYHTTPClient.h; sourceTree = "<group>"; };
+		55E57C1D1B4D279000B0734A /* INYHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INYHTTPClient.m; path = API/INYHTTPClient.m; sourceTree = "<group>"; };
+		55E57C1E1B4D279000B0734A /* INYLibraryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INYLibraryAPI.h; path = API/INYLibraryAPI.h; sourceTree = "<group>"; };
+		55E57C1F1B4D279000B0734A /* INYLibraryAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INYLibraryAPI.m; path = API/INYLibraryAPI.m; sourceTree = "<group>"; };
+		55E57C201B4D279000B0734A /* INYPersistencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INYPersistencyManager.h; path = API/INYPersistencyManager.h; sourceTree = "<group>"; };
+		55E57C211B4D279000B0734A /* INYPersistencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INYPersistencyManager.m; path = API/INYPersistencyManager.m; sourceTree = "<group>"; };
+		55E57C221B4D279000B0734A /* SMXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMXMLDocument.h; path = API/SMXMLDocument.h; sourceTree = "<group>"; };
+		55E57C231B4D279000B0734A /* SMXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMXMLDocument.m; path = API/SMXMLDocument.m; sourceTree = "<group>"; };
+		55E57C281B4D27A200B0734A /* INYBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INYBalance.h; path = Model/INYBalance.h; sourceTree = "<group>"; };
+		55E57C291B4D27A200B0734A /* INYBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INYBalance.m; path = Model/INYBalance.m; sourceTree = "<group>"; };
+		55E57C2A1B4D27A200B0734A /* INYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INYUser.h; path = Model/INYUser.h; sourceTree = "<group>"; };
+		55E57C2B1B4D27A200B0734A /* INYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INYUser.m; path = Model/INYUser.m; sourceTree = "<group>"; };
+		55E57C2E1B4D27B300B0734A /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main_iPad.storyboard; path = View/Main_iPad.storyboard; sourceTree = "<group>"; };
+		55E57C2F1B4D27B300B0734A /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main_iPhone.storyboard; path = View/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		55E57C321B4D27C000B0734A /* INYDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INYDetailViewController.h; path = Controller/INYDetailViewController.h; sourceTree = "<group>"; };
+		55E57C331B4D27C000B0734A /* INYDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INYDetailViewController.m; path = Controller/INYDetailViewController.m; sourceTree = "<group>"; };
+		55E57C341B4D27C000B0734A /* INYMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INYMasterViewController.h; path = Controller/INYMasterViewController.h; sourceTree = "<group>"; };
+		55E57C351B4D27C000B0734A /* INYMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INYMasterViewController.m; path = Controller/INYMasterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +105,10 @@
 		0616E7AA19C19E35005D620F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0660041819BF24A400758C84 /* INYMasterViewController.h */,
-				0660041919BF24A400758C84 /* INYMasterViewController.m */,
-				0660041B19BF24A400758C84 /* INYDetailViewController.h */,
-				0660041C19BF24A400758C84 /* INYDetailViewController.m */,
+				55E57C321B4D27C000B0734A /* INYDetailViewController.h */,
+				55E57C331B4D27C000B0734A /* INYDetailViewController.m */,
+				55E57C341B4D27C000B0734A /* INYMasterViewController.h */,
+				55E57C351B4D27C000B0734A /* INYMasterViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -116,8 +116,8 @@
 		0616E7AB19C19E48005D620F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0660041219BF24A400758C84 /* Main_iPhone.storyboard */,
-				0660041519BF24A400758C84 /* Main_iPad.storyboard */,
+				55E57C2E1B4D27B300B0734A /* Main_iPad.storyboard */,
+				55E57C2F1B4D27B300B0734A /* Main_iPhone.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -125,14 +125,10 @@
 		0616E7AC19C19E62005D620F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0616E7AD19C1A08E005D620F /* INYUsers.h */,
-				0616E7AE19C1A08E005D620F /* INYUsers.m */,
-				0616E7B919C1A93F005D620F /* INYBalance.h */,
-				0616E7BA19C1A93F005D620F /* INYBalance.m */,
-				0616E7C019C1F6D5005D620F /* INYLibraryAPI.h */,
-				0616E7C119C1F6D5005D620F /* INYLibraryAPI.m */,
-				0616E7C319C1F7C3005D620F /* INYPersistencyManager.h */,
-				0616E7C419C1F7C3005D620F /* INYPersistencyManager.m */,
+				55E57C281B4D27A200B0734A /* INYBalance.h */,
+				55E57C291B4D27A200B0734A /* INYBalance.m */,
+				55E57C2A1B4D27A200B0734A /* INYUser.h */,
+				55E57C2B1B4D27A200B0734A /* INYUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -140,8 +136,14 @@
 		0616E7BC19C1C1B2005D620F /* API */ = {
 			isa = PBXGroup;
 			children = (
-				0616E7BD19C1C201005D620F /* INYHTTPClient.h */,
-				0616E7BE19C1C201005D620F /* INYHTTPClient.m */,
+				55E57C1C1B4D279000B0734A /* INYHTTPClient.h */,
+				55E57C1D1B4D279000B0734A /* INYHTTPClient.m */,
+				55E57C1E1B4D279000B0734A /* INYLibraryAPI.h */,
+				55E57C1F1B4D279000B0734A /* INYLibraryAPI.m */,
+				55E57C201B4D279000B0734A /* INYPersistencyManager.h */,
+				55E57C211B4D279000B0734A /* INYPersistencyManager.m */,
+				55E57C221B4D279000B0734A /* SMXMLDocument.h */,
+				55E57C231B4D279000B0734A /* SMXMLDocument.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -184,8 +186,6 @@
 				0616E7AB19C19E48005D620F /* View */,
 				0616E7AA19C19E35005D620F /* Controller */,
 				0660041E19BF24A400758C84 /* Images.xcassets */,
-				0616E7B319C1A3C2005D620F /* SMXMLDocument.h */,
-				0616E7B419C1A3C2005D620F /* SMXMLDocument.m */,
 				0660040F19BF24A400758C84 /* INYAppDelegate.h */,
 				0660041019BF24A400758C84 /* INYAppDelegate.m */,
 				0660040719BF24A400758C84 /* Supporting Files */,
@@ -299,9 +299,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0660041719BF24A400758C84 /* Main_iPad.storyboard in Resources */,
+				55E57C301B4D27B300B0734A /* Main_iPad.storyboard in Resources */,
+				55E57C311B4D27B300B0734A /* Main_iPhone.storyboard in Resources */,
 				0660041F19BF24A400758C84 /* Images.xcassets in Resources */,
-				0660041419BF24A400758C84 /* Main_iPhone.storyboard in Resources */,
 				0660040B19BF24A400758C84 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,15 +321,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E57C241B4D279000B0734A /* INYHTTPClient.m in Sources */,
 				0660040D19BF24A400758C84 /* main.m in Sources */,
-				0660041A19BF24A400758C84 /* INYMasterViewController.m in Sources */,
-				0660041D19BF24A400758C84 /* INYDetailViewController.m in Sources */,
-				0616E7BF19C1C201005D620F /* INYHTTPClient.m in Sources */,
-				0616E7AF19C1A08E005D620F /* INYUsers.m in Sources */,
-				0616E7BB19C1A93F005D620F /* INYBalance.m in Sources */,
-				0616E7C519C1F7C3005D620F /* INYPersistencyManager.m in Sources */,
-				0616E7C219C1F6D5005D620F /* INYLibraryAPI.m in Sources */,
-				0616E7B519C1A3C2005D620F /* SMXMLDocument.m in Sources */,
+				55E57C2C1B4D27A200B0734A /* INYBalance.m in Sources */,
+				55E57C261B4D279000B0734A /* INYPersistencyManager.m in Sources */,
+				55E57C271B4D279000B0734A /* SMXMLDocument.m in Sources */,
+				55E57C371B4D27C000B0734A /* INYMasterViewController.m in Sources */,
+				55E57C361B4D27C000B0734A /* INYDetailViewController.m in Sources */,
+				55E57C2D1B4D27A200B0734A /* INYUser.m in Sources */,
+				55E57C251B4D279000B0734A /* INYLibraryAPI.m in Sources */,
 				0660041119BF24A400758C84 /* INYAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,22 +359,6 @@
 				0660040A19BF24A400758C84 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		0660041219BF24A400758C84 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0660041319BF24A400758C84 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		0660041519BF24A400758C84 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0660041619BF24A400758C84 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		0660042E19BF24A400758C84 /* InfoPlist.strings */ = {

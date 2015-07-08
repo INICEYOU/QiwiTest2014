@@ -9,6 +9,8 @@
 #import "INYHTTPClient.h"
 #import "INYLibraryAPI.h"
 
+static NSString * const refreshUsersViewAfterConnection = @"refreshUsersViewAfterConnection";
+static NSString * const refreshBalanceViewAfterConnection = @"refreshBalanceViewAfterConnection";
 
 @interface INYHTTPClient (){
     NSString *urlString;
@@ -18,7 +20,7 @@
 
 @implementation INYHTTPClient
 
-- (void)RequestWithURL:(NSString*)url option:(NSString*)option
+- (void)requestWithURL:(NSString*)url option:(NSString*)option
 {
     NSString *URLfull = [url stringByAppendingString:option];
     NSURLRequest *request = [NSURLRequest new];
@@ -70,12 +72,12 @@ didReceiveResponse:(NSURLResponse *)response
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [[INYLibraryAPI sharedInstance]getWithReceivedData:_receivedData urlString:urlString optionIdUser:optionIdUser];
+    [[INYLibraryAPI sharedInstance]withReceivedData:_receivedData urlString:urlString optionIdUser:optionIdUser];
     
     if ([urlString isEqualToString:@"http://je.su/test"]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshUsersViewAfterConnection" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:refreshUsersViewAfterConnection object:nil];
     } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshBalanceViewAfterConnection" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:refreshBalanceViewAfterConnection object:nil];
     }
 }
 

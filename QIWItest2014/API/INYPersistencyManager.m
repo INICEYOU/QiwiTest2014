@@ -8,7 +8,7 @@
 
 #import "INYPersistencyManager.h"
 #import "SMXMLDocument.h"
-#import "INYUsers.h"
+#import "INYUser.h"
 
 
 @interface INYPersistencyManager ()
@@ -33,23 +33,23 @@
     return self;
 }
 
-- (NSArray *)getUsers
+- (NSArray *)users
 {
     return users;
 }
 
-- (NSArray *)getBalances
+- (NSArray *)balances
 {
     return balances;
 }
 
-- (NSString *)getUserIdWithIndex:(NSIndexPath*)index
+- (NSString *)userIdWithIndex:(NSIndexPath *)index
 {
-    INYUsers *myUser = users[index.row];
+    INYUser *myUser = users[index.row];
     return myUser.idUser;
 }
 
-- (NSArray *)getBalanceWithUserId:(NSString*)idUser
+- (NSArray *)balanceWithUserId:(NSString*)idUser
 {
     NSMutableArray *myBalance = [NSMutableArray new];
     for (INYBalance *balance in balances) {
@@ -60,7 +60,7 @@
     return myBalance;
 }
 
--(NSString *)getBalanceUserFriendlyWithBalance:(INYBalance*)inybalance
+-(NSString *)balanceUserFriendlyWithBalance:(INYBalance*)inybalance
 {
     NSNumberFormatter *formatter = [NSNumberFormatter new];
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -78,7 +78,7 @@
     return currencyString;
 }
 
-- (NSLocale *) findLocaleByCurrencyCode:(NSString *)_currencyCode
+- (NSLocale *) findLocaleByCurrencyCode:(NSString *)currencyCode // 1
 {
     NSArray *locales = [NSLocale availableLocaleIdentifiers];
     NSLocale *locale = nil;
@@ -87,14 +87,14 @@
     for (localeId in locales) {
         locale = [[NSLocale alloc] initWithLocaleIdentifier:localeId] ;
         NSString *code = [locale objectForKey:NSLocaleCurrencyCode];
-        if ([code isEqualToString:_currencyCode])
+        if ([code isEqualToString:currencyCode])
             break;
         else
             locale = nil;
     }
     
     if (locale == nil) {
-        NSDictionary *components = [NSDictionary dictionaryWithObject:_currencyCode
+        NSDictionary *components = [NSDictionary dictionaryWithObject:currencyCode
                                                                forKey:NSLocaleCurrencyCode];
         
         localeId = [NSLocale localeIdentifierFromComponents:components];
@@ -103,7 +103,7 @@
     return locale;
 }
 
-- (void)getWithReceivedData:(NSData*)receivedData urlString:(NSString*)urlString optionIdUser:(NSString*)optionIdUser
+- (void)withReceivedData:(NSData*)receivedData urlString:(NSString*)urlString optionIdUser:(NSString*)optionIdUser
 {
     NSError *error;
     SMXMLDocument *document = [SMXMLDocument documentWithData:receivedData error:&error];
@@ -124,7 +124,7 @@
             currentBalance.idUser = optionIdUser;
             [newBalances addObject:currentBalance];
         }
-        balances = newBalances;
+        balances = [newBalances copy];
     }
     
     if (valueCode == 0) {
@@ -134,13 +134,13 @@
             
             SMXMLElement *usersElement = [document childNamed:@"users"];
             for (SMXMLElement *user in [usersElement childrenNamed:@"user"]) {
-                INYUsers *curreentUser = [INYUsers new];
+                INYUser *curreentUser = [INYUser new];
                 curreentUser.idUser = [user attributeNamed:@"id"];
                 curreentUser.name = [user attributeNamed:@"name"];
                 curreentUser.secondName = [user attributeNamed:@"second-name"];
                 [newUsers addObject:curreentUser];
             }
-            users = newUsers;
+            users = [newUsers copy]; // 6
         }
     } else {
         SMXMLElement *codeResult = [document childNamed:@"result-code"];

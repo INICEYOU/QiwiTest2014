@@ -11,6 +11,7 @@
 #import "INYLibraryAPI.h"
 
 static NSString * const ULRshowUsers = @"http://je.su/test";
+static NSString * const refreshUsersViewAfterConnection = @"refreshUsersViewAfterConnection";
 
 @interface INYMasterViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -40,7 +41,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:@"refreshUsersViewAfterConnection" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewAfterConnection) name:refreshUsersViewAfterConnection object:nil];
 
     self.detailViewController = (INYDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
  
@@ -62,7 +63,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 
 - (void)refreshViewAfterConnection
 {
-    allUsers = [[INYLibraryAPI sharedInstance] getUsers];
+    allUsers = [[INYLibraryAPI sharedInstance] users];
     [self.tableView reloadData];
     
     if(![refreshControl isRefreshing]){
@@ -88,7 +89,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
     if(![refreshControl isRefreshing]){
         [spinner startAnimating];
     }
-    [[INYLibraryAPI sharedInstance]RequestWithURL:ULRshowUsers option:@""];
+    [[INYLibraryAPI sharedInstance]requestWithURL:ULRshowUsers option:@""];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -119,7 +120,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    INYUsers *users = allUsers[indexPath.row];
+    INYUser *users = allUsers[indexPath.row];
     cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ %@",users.secondName,users.name];
     return cell;
 }
@@ -127,7 +128,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.detailViewController.detailItem = [[INYLibraryAPI sharedInstance] getUserIdWithIndex:indexPath];
+        self.detailViewController.detailItem = [[INYLibraryAPI sharedInstance] userIdWithIndex:indexPath];
     }
 }
 
@@ -135,7 +136,7 @@ static NSString * const ULRshowUsers = @"http://je.su/test";
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [[segue destinationViewController] setDetailItem:[[INYLibraryAPI sharedInstance] getUserIdWithIndex:indexPath]];
+        [[segue destinationViewController] setDetailItem:[[INYLibraryAPI sharedInstance] userIdWithIndex:indexPath]];
     }
 }
 

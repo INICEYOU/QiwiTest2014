@@ -10,7 +10,9 @@
 
 @interface INYBalance : NSObject
 
-@property (strong, nonatomic) NSString *idUser, *amount, *currency;
+@property (strong, nonatomic) NSString *idUser;
+@property (strong, nonatomic) NSString *amount;
+@property (strong, nonatomic) NSString *currency;
 
 - (id)initWithId:(NSString *)idUser
          amount:(NSString *)amount
